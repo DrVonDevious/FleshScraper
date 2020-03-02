@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_02_204522) do
+ActiveRecord::Schema.define(version: 2020_03_02_205602) do
+
+  create_table "cells", force: :cascade do |t|
+    t.integer "x"
+    t.integer "y"
+    t.string "picture_url"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "games", force: :cascade do |t|
     t.integer "board_width"
@@ -19,6 +27,17 @@ ActiveRecord::Schema.define(version: 2020_03_02_204522) do
     t.integer "initial_npc"
     t.integer "current_score"
     t.boolean "is_running"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "items", force: :cascade do |t|
+    t.string "name"
+    t.string "picture_url"
+    t.string "type"
+    t.boolean "weared?"
+    t.integer "level"
+    t.string "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -33,6 +52,14 @@ ActiveRecord::Schema.define(version: 2020_03_02_204522) do
     t.integer "speed"
     t.integer "level_points"
     t.integer "range_of_sight"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "obstacles", force: :cascade do |t|
+    t.string "picture_url"
+    t.boolean "destruclable"
+    t.integer "hp"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
