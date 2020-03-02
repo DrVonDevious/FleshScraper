@@ -1,0 +1,2 @@
+class NonPlayerCharachter < ApplicationRecord
+end
