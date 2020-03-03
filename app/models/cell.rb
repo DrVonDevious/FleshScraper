@@ -43,13 +43,19 @@ class Cell < ApplicationRecord
   #   [self.north, self.south, self.east, self.west].compact
   # end
 
-  def print
-    div_open = "<div id= \"cell\" style = \"grid-column-start: #{self.x}; grid-column-end: #{self.x}; grid-row-start: #{self.y}; grid-row-end: #{self.y}\">"
-    if self.obstacle
-      content = "x"
+  def self.print(hash,x,y)
+    div_open = "<div id= \"cell\" style = \"grid-column-start: #{x}; grid-column-end: #{x}; grid-row-start: #{y}; grid-row-end: #{y}\">".html_safe
+    if hash[:obstacle]
+      content = "<div id= \"obstacle\"></div>".html_safe
+    elsif hash[:zombie]
+      content = "<div id= \"zombie\"></div>".html_safe
+    elsif hash[:npc]
+      content = "<div id= \"npc\"></div>".html_safe
+    else
+      content = ""
     end
-    div_close = "</div>"
-    "#{div_open}#{content}#{div_close}"
+    div_close = "</div>".html_safe
+    "#{div_open} #{content} #{div_close}"
   end
 
 end

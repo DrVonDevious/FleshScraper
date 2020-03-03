@@ -9,6 +9,6 @@ class Zombie < ApplicationRecord
     defence = level * 2 - attack
     speed = 1
     range_of_sight = 5
-    Zombie.new(is_alive: is_alive, picture_url: picture_url, hp: hp, attack: attack, defence: defence, speed: speed, range_of_sight: range_of_sight)
+    {is_alive: is_alive, picture_url: picture_url, hp: hp, attack: attack, defence: defence, speed: speed, range_of_sight: range_of_sight, created_at: Time.now, updated_at: Time.now}
   end
 end
