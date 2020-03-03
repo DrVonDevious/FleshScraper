@@ -7,10 +7,13 @@ Rails.application.routes.draw do
   get '/authorized', to: 'sessions#page_requires_login'
 
   # User Routes
-  resources :users, only: [:new, :create]
+  resources :users, only: [:new, :create, :index]
 
   # Static routes
   root 'static#home'
   get 'static/about'
+
+  # Game routes
+  get '/users/:id/games', to: 'games#index'
 
 end
