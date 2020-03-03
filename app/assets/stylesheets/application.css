@@ -57,4 +57,6 @@ body {
   padding-top: 40px;
   padding-left: 40px;
   padding-right: 40px;
+  background-image: url('site-background.jpg');
+  background-size: 100%, 100%;
 }
