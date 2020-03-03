@@ -1,3 +1,4 @@
+
 class GamesController < ApplicationController
   
   def random
@@ -7,6 +8,13 @@ class GamesController < ApplicationController
     Obstacle.delete_all
     @game = Game.create
     @game.generate
+  end
+
+
+
+
+
+  def index
   end
 
 

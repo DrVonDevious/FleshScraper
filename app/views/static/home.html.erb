@@ -1,0 +1,6 @@
+<h1>Welcome To FleshScraper!</h1>
+<% if logged_in? %>
+  <h3>You are logged in as <%= current_user.username %>.</h3>
+<% else %>
+  <h3>You are logged out...</h3>
+<% end %>

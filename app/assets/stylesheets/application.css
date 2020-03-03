@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /*
  * This is a manifest file that'll be compiled into application.css, which will include all the files
  * listed below.
@@ -35,3 +36,67 @@
  }
 
  
+=======
+
+.nav-header {
+  position: fixed;
+
+  width: 100%;
+  height: 40px;
+
+  top: 0;
+  left: 0;
+
+  color: white;
+  background-color: black;
+}
+
+.nav-header a {
+  text-decoration: none;
+  color: red;
+}
+
+.nav-home {
+  float: left;
+  padding-top: 10px;
+  padding-left: 20px;
+}
+
+.nav-play {
+  float: right;
+  padding-top: 10px;
+  padding-right: 20px;
+}
+
+.nav-register {
+  float: right;
+  padding-top: 10px;
+  padding-right: 20px;
+}
+
+.nav-login {
+  float: right;
+  padding-top: 10px;
+  padding-right: 20px;
+}
+
+.nav-logout {
+  float: right;
+  padding-top: 10px;
+  padding-right: 20px;
+}
+
+.nav-link-to {
+  font-size: 40px;
+}
+
+body {
+  margin: 0;
+  padding: 40px;
+
+  background-color: black;
+  background-image: url('site-background.jpg');
+  background-size: 100%, 100%;
+  background-repeat: no-repeat;
+}
+>>>>>>> 20e19cd66cb69bf684e40e2e727e0ef980d310cb
