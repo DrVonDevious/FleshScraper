@@ -1,0 +1,21 @@
+
+.game-menu {
+  width: 200px;
+}
+
+.game-menu a {
+  background-color: #eee;
+  color: black;
+  display: block;
+  padding: 12px;
+  text-decoration: none;
+}
+
+.game-menu a:hover {
+  background-color: #ccc;
+}
+
+.game-menu a:active {
+  background-color: red;
+  color: white;
+}
