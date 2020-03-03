@@ -1,0 +1,31 @@
+
+<div class='game-screen'>
+
+  <div class="controls-panel">
+    <div class="player-view">
+      <img src="/app/assets/images/user_image_01.jpg" width="264" height="184">
+    </div>
+    <div class="player-stats">
+      HP: 10
+      Attack: 20
+      Defence: 3
+      Speed: 1
+    </div>
+    <div class="player-commands">
+      <%= button_tag "⬁" %>
+      <%= button_tag "⇧" %>
+      <%= button_tag "⬀" %>
+      <%= button_tag "⇦" %>
+      <%= button_tag " " %>
+      <%= button_tag "⇨" %>
+      <%= button_tag "⬃" %>
+      <%= button_tag "⇩" %>
+      <%= button_tag "⬂" %>
+    </div>
+  </div>
+
+  <div id="field">
+    <%=@game.print%>
+  </div>
+
+</div>

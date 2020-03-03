@@ -21,15 +21,8 @@ class Game < ApplicationRecord
     }
 
     Cell.insert_all(cells)
-    # generate the obstacles
-
 
     # generate player
-    #player_x = self.board_width / 2
-    #player_y = self.board_width / 2
-    #start_cell = Cell.find_by(game: self, x: player_x, y:player_y)
-    #player = Player.create
-    #player.cell = start_cell
 
     # generate the obstacles
     obstacles = []

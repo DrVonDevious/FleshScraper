@@ -12,6 +12,10 @@ class GamesController < ApplicationController
     @game.generate
   end
 
+  def play
+    @game = Game.find_by(params[:id])
+  end
+
   def index
     @games = current_user.games
   end
@@ -27,10 +31,9 @@ class GamesController < ApplicationController
     game = Game.new(game_params)
     game.save
     game.update(user_id: session[:user_id], is_running: true)
-
-    game.generate
-
-
+    #game.generate
+    #game.save
+    redirect_to "/games/#{game.id}/play"
   end
 
   private

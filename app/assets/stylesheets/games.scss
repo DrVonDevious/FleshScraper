@@ -36,3 +36,25 @@
   color: white;
 }
 
+.controls-panel {
+  float: right;
+  height: 600px;
+  width: 20%;
+  background-color: gray;
+}
+
+.player-view {
+  padding-top: 20px;
+  padding-bottom: 10px;
+  padding-left: 50px;
+}
+
+.player-stats {
+  text-align: center;
+}
+
+.player-commands {
+  text-align: center;
+  padding-top: 40px;
+}
+
