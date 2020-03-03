@@ -1,14 +1,40 @@
 <!DOCTYPE html>
+
 <html>
   <head>
+
     <title>FleshScraper</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag    'application', media: 'all' %>
+
   </head>
 
   <body>
+
+    <div class="nav-header">
+      <div class="nav-home">
+        <a href='/'>FleshScraper</a>
+      </div>
+      <% if logged_in? %>
+        <div class="nav-logout">
+          <%= link_to 'Logout', logout_path, method: 'delete' %>
+        </div>
+        <div class="nav-play">
+          <%= link_to 'Play', '/users/:id/games' %>
+        </div>
+      <% else %>
+        <div class="nav-login">
+          <%= link_to 'Login', login_path %>
+        </div>
+        <div class="nav-register">
+          <%= link_to 'Register', new_user_path %>
+        </div>
+      <% end %>
+    </div>
+
     <%= yield %>
+
   </body>
 </html>
