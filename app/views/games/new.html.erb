@@ -1,1 +1,13 @@
 <h1>New Game</h1>
+
+<%= form_with model: @game do |f| %>
+  <%= f.label "Character Name "%>
+  <%= f.text_field :name %>
+  <br><br>
+
+  <%= f.label "Difficulty "%>
+  <%= f.label "Not Available" %>
+  <br><br>
+
+  <%= f.submit "Start" %>
+<% end %>

@@ -1,2 +1,10 @@
 
 <h1>All Current Games</h1>
+
+<ol>
+  <% @games.each do |game| %>
+    <li>
+      <%= game.id %>
+    </li>
+  <% end %>
+</ol>

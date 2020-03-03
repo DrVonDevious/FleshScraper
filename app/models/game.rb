@@ -1,5 +1,5 @@
 class Game < ApplicationRecord
-  # belongs_to :user
+  belongs_to :user
   has_many :cells
   has_many :zombies, through: :cells
   has_many :players, through: :cells
