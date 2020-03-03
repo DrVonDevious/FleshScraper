@@ -1,11 +1,13 @@
 class GamesController < ApplicationController
   
   def random
-    Cell.destroy_all
-    Game.destroy_all
-    Zombie.destroy_all
-    Obstacle.destroy_all
+    Cell.delete_all
+    Game.delete_all
+    Zombie.delete_all
+    Obstacle.delete_all
     @game = Game.create
     @game.generate
   end
+
+
 end

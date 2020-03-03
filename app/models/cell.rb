@@ -43,5 +43,13 @@ class Cell < ApplicationRecord
   #   [self.north, self.south, self.east, self.west].compact
   # end
 
+  def print
+    div_open = "<div id= \"cell\" style = \"grid-column-start: #{self.x}; grid-column-end: #{self.x}; grid-row-start: #{self.y}; grid-row-end: #{self.y}\">"
+    if self.obstacle
+      content = "x"
+    end
+    div_close = "</div>"
+    "#{div_open}#{content}#{div_close}"
+  end
 
 end

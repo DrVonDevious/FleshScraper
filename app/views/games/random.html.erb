@@ -1,12 +1,5 @@
 <div id="field">
-  <%(1...@game.board_width+1).each { |x|%>
-    <%(1...@game.board_heigth+1).each { |y|%>
-
-      <div id= "cell" style = "grid-column-start: <%=x%>; grid-column-end: <%=x%>; grid-row-start: <%=y%>; grid-row-end: <%=y%>">
-        <%=y%>
-      </div>
-    <%}%>
-  <%}%>
+  <%=@game.print%>
 
 </div>
 
