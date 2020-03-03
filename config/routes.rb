@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  get '/testfield', to: 'games#random', as: 'random'
+
+
   # Session routes
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
@@ -18,5 +22,6 @@ Rails.application.routes.draw do
   get '/games', to: 'games#index'
   get '/games/new', to: 'games#new'
   post '/games', to: 'games#create'
+
 
 end
