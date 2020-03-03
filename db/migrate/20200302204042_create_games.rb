@@ -7,7 +7,7 @@ class CreateGames < ActiveRecord::Migration[6.0]
       t.integer :initial_npc
       t.integer :current_score
       t.boolean :is_running
-
+      t.integer :user_id
       t.timestamps
     end
   end

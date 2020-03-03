@@ -16,6 +16,7 @@ ActiveRecord::Schema.define(version: 2020_03_02_205602) do
     t.integer "x"
     t.integer "y"
     t.string "picture_url"
+    t.integer "game_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -27,6 +28,7 @@ ActiveRecord::Schema.define(version: 2020_03_02_205602) do
     t.integer "initial_npc"
     t.integer "current_score"
     t.boolean "is_running"
+    t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -35,9 +37,10 @@ ActiveRecord::Schema.define(version: 2020_03_02_205602) do
     t.string "name"
     t.string "picture_url"
     t.string "type"
-    t.boolean "weared?"
+    t.boolean "weared"
     t.integer "level"
     t.string "description"
+    t.integer "cell_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -60,6 +63,7 @@ ActiveRecord::Schema.define(version: 2020_03_02_205602) do
     t.string "picture_url"
     t.boolean "destruclable"
     t.integer "hp"
+    t.integer "cell_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -86,7 +90,6 @@ ActiveRecord::Schema.define(version: 2020_03_02_205602) do
     t.integer "attack"
     t.integer "defence"
     t.integer "speed"
-    t.integer "level_points"
     t.integer "range_of_sight"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

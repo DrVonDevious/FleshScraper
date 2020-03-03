@@ -4,6 +4,7 @@ class CreateObstacles < ActiveRecord::Migration[6.0]
       t.string :picture_url
       t.boolean :destruclable
       t.integer :hp
+      t.integer :cell_id
 
       t.timestamps
     end

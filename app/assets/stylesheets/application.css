@@ -13,3 +13,25 @@
  *= require_tree .
  *= require_self
  */
+
+ #field {
+  display: grid;
+  grid-template-columns: repeat(100, 1fr); 
+  grid-template-rows: repeat(100, 1fr); 
+ }
+
+
+ #cell {
+
+   border: 1px solid grey; 
+   width: 20px; 
+   margin: 0px;
+   padding: 0px;
+   max-width: 20px; 
+   height: 20px; 
+   max-height:20px; 
+   background-image: url('grass.png');
+   background-size: 20px;
+ }
+
+ 

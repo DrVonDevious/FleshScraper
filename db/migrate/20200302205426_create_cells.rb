@@ -4,6 +4,7 @@ class CreateCells < ActiveRecord::Migration[6.0]
       t.integer :x
       t.integer :y
       t.string :picture_url
+      t.integer :game_id
 
       t.timestamps
     end
