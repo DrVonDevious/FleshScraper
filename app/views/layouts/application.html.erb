@@ -1,14 +1,34 @@
 <!DOCTYPE html>
+
 <html>
   <head>
+
     <title>FleshScraper</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag    'application', media: 'all' %>
+
   </head>
 
   <body>
+
+    <div class="nav-header">
+      <div class="nav-home">
+        FleshScraper
+      </div>
+      <% if logged_in? %>
+        <div class="nav-logout">
+          <%= link_to 'Logout', logout_path, method: 'delete' %>
+        </div>
+      <% else %>
+        <div class="nav-login">
+          <%= link_to 'Login', login_path %>
+        </div>
+      <% end %>
+    </div>
+
     <%= yield %>
+
   </body>
 </html>
