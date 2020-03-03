@@ -29,6 +29,8 @@ class GamesController < ApplicationController
     game.update(user_id: session[:user_id], is_running: true)
 
     game.generate
+
+
   end
 
   private
