@@ -20,7 +20,10 @@ Rails.application.routes.draw do
   get 'static/about'
 
   # Game routes
-  get '/users/:id/games', to: 'games#index'
+  get '/games/menu', to: 'games#menu'
+  get '/games', to: 'games#index'
+  get '/games/new', to: 'games#new'
+  post '/games', to: 'games#create'
 
 
 end
