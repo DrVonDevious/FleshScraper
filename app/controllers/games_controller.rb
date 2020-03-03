@@ -12,11 +12,6 @@ class GamesController < ApplicationController
 
 
 
-<<<<<<< HEAD
-
-
-=======
->>>>>>> 327c2687fb6c9d4f06ba8d6188cdca207bfce487
   def index
   end
 

@@ -1,11 +1,9 @@
 Rails.application.routes.draw do
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-<<<<<<< HEAD
-  get '/random', to: 'games#random', as: 'random'
-=======
+
   get '/testfield', to: 'games#random', as: 'random'
->>>>>>> 327c2687fb6c9d4f06ba8d6188cdca207bfce487
+
 
 
   # Session routes
