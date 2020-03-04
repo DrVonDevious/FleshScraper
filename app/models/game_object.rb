@@ -95,8 +95,13 @@ class GameObject < ApplicationRecord
     when "south"
       self.update(y: self.y + 1)
     when "southwest"
-      self.update(y: self.y + 1, x: self.x + 1)
+      self.update(y: self.y + 1, x: self.x + 1) if collision?()
     end
+  end
+
+  private
+
+  def collision?(x, y)
   end
 
 end
