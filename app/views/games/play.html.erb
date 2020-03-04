@@ -14,15 +14,15 @@
     <div class="player-commands">
       <div class="nav-commands">
         <%# window.location returns the current browser url using JS. %>
-        <%= button_tag "NW", { class: "nav-button", onclick: "window.location = '#'" } %>
-        <%= button_tag "N", { class: "nav-button", onclick: "window.location = '#'" } %>
-        <%= button_tag "NE", { class: "nav-button", onclick: "window.location = '#'" } %>
-        <%= button_tag "W", { class: "nav-button", onclick: "window.location = '#'" } %>
-        <%= button_tag "Wait", { class: "nav-button", onclick: "window.location = '#'" } %>
-        <%= button_tag "E", { class: "nav-button", onclick: "window.location = '#'" } %>
-        <%= button_tag "SE", { class: "nav-button", onclick: "window.location = '#'" } %>
-        <%= button_tag "S", { class: "nav-button", onclick: "window.location = '#'" } %>
-        <%= button_tag "SW", { class: "nav-button", onclick: "window.location = '#'" } %>
+        <%= button_tag "NW", { class: "nav-button", onclick: "window.location = '/move/northwest'" } %>
+        <%= button_tag "N", { class: "nav-button", onclick: "window.location = '/move/north'" } %>
+        <%= button_tag "NE", { class: "nav-button", onclick: "window.location = '/move/northeast'" } %>
+        <%= button_tag "W", { class: "nav-button", onclick: "window.location = '/move/west'" } %>
+        <%= button_tag "Wait", { class: "nav-button", onclick: "window.location = next_turn_path" } %>
+        <%= button_tag "E", { class: "nav-button", onclick: "window.location = '/move/east'" } %>
+        <%= button_tag "SW", { class: "nav-button", onclick: "window.location = '/move/southwest'" } %>
+        <%= button_tag "S", { class: "nav-button", onclick: "window.location = '/move/south'" } %>
+        <%= button_tag "SE", { class: "nav-button", onclick: "window.location = '/move/southeast'" } %>
       </div>
       <div class="action-commands">
         <button class="action-button">Use Item</button>

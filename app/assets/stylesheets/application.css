@@ -22,12 +22,11 @@
   background-image: url('field-backgroung.jpg');  
   background-size: 40px;
   background-repeat: repeat;
+  background-attachment: local;
   overflow: scroll;
-  width: 78%;
   min-height: 200px;
   max-height: 880px;
   margin-top: 40px;
-
  }
 
 
@@ -70,9 +69,7 @@
   background-size: 40px;
 }
 
-#npc{
-
-  
+#npc {
   width: 40px; 
   margin: 0px;
   padding: 0px;
@@ -83,6 +80,16 @@
   background-size: 40px;
 }
 
+#player {
+  width: 40px; 
+  margin: 0px;
+  margin: 0px;
+  max-width: 40px; 
+  height: 40px; 
+  max-height:40px; 
+  background-image: url('npc.png');
+  background-size: 40px;
+}
 
  
 
