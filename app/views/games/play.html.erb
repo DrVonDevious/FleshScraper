@@ -12,17 +12,24 @@
       Speed: 1
     </div>
     <div class="player-commands">
-      <button class="nav-button">NW</button>
-      <button class="nav-button">N</button>
-      <button class="nav-button">NE</button>
-      <button class="nav-button">W</button>
-      <button class="nav-button">Wait</button>
-      <button class="nav-button">E</button>
-      <button class="nav-button">SW</button>
-      <button class="nav-button">S</button>
-      <button class="nav-button">SE</button>
-      <button class="action-button">Use Item</button>
-      <button class="action-button">Quit Game</button>
+      <div class="nav-commands">
+        <%# window.location returns the current browser url using JS. %>
+        <%= button_tag "NW", { class: "nav-button", onclick: "window.location = '#'" } %>
+        <%= button_tag "N", { class: "nav-button", onclick: "window.location = '#'" } %>
+        <%= button_tag "NE", { class: "nav-button", onclick: "window.location = '#'" } %>
+        <%= button_tag "W", { class: "nav-button", onclick: "window.location = '#'" } %>
+        <%= button_tag "Wait", { class: "nav-button", onclick: "window.location = '#'" } %>
+        <%= button_tag "E", { class: "nav-button", onclick: "window.location = '#'" } %>
+        <%= button_tag "SE", { class: "nav-button", onclick: "window.location = '#'" } %>
+        <%= button_tag "S", { class: "nav-button", onclick: "window.location = '#'" } %>
+        <%= button_tag "SW", { class: "nav-button", onclick: "window.location = '#'" } %>
+      </div>
+      <div class="action-commands">
+        <button class="action-button">Use Item</button>
+        <%= button_tag "Use Item", { class: "action-button", onclick: "window.location = '#'" } %>
+        <%= button_tag "", { class: "action-button", onclick: "window.location = '#'" } %>
+        <button class="action-button">Quit Game</button>
+      </div>
     </div>
   </div>
 

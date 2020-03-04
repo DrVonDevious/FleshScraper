@@ -20,8 +20,9 @@
   grid-template-columns: repeat(100, 1fr); 
   grid-template-rows: repeat(100, 1fr); 
   overflow: scroll;
-  width: 70%;
-  height: 588px;
+  width: 78%;
+  min-height: 200px;
+  max-height: 880px;
   margin-top: 40px;
  }
 

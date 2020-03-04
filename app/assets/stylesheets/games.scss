@@ -44,13 +44,13 @@
 .controls-panel {
   float: right;
   padding-top: 40px;
-  height: 548px;
+  height: 648px;
   width: 20%;
   background-color: gray;
 }
 
 .player-view {
-  height: 140px;
+  height: 200px;
   background-image: url("user_image_01.jpg");
   background-size: cover;
 }
@@ -60,7 +60,17 @@
   text-align: center;
 }
 
-.player-commands {
+.nav-commands {
+  margin: 0;
+  text-align: center;
+  padding-top: 40px;
+  padding-left: 16px;
+  padding-right: 16px;
+  display: grid;
+  grid-template-columns: auto auto auto;
+}
+
+.action-commands {
   text-align: center;
   padding-top: 40px;
   display: block;
@@ -68,10 +78,18 @@
 
 .nav-button {
   margin-top: 4px;
+  margin-left: 2px;
+  margin-right: 2px;
   background-color: #707070;
   border: none;
-  padding: 16px 32px;
-  width: 80px;
+  padding: 16px;
+  text-decoration: none;
+  font-family:'Roboto',sans-serif;
+  outline: none;
+}
+
+.nav-button:active {
+  background-color: #545454;
 }
 
 .action-button {
@@ -80,6 +98,13 @@
   border: none;
   padding: 16px 16px;
   width: 100px;
+  text-decoration: none;
+  font-family:'Roboto',sans-serif;
+  outline: none;
+}
+
+.action-button:active {
+  background-color: #545454;
 }
 
 
