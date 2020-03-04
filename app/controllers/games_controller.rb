@@ -13,6 +13,10 @@ class GamesController < ApplicationController
     @game.generate
   end
 
+  def play
+    @game = Game.find_by(params[:id])
+  end
+
   def index
     @games = current_user.games
   end
@@ -25,13 +29,15 @@ class GamesController < ApplicationController
   end
 
   def create
+    Cell.delete_all
+    Game.delete_all
+    Zombie.delete_all
+    Obstacle.delete_all
     game = Game.new(game_params)
     game.save
     game.update(user_id: session[:user_id], is_running: true)
-
     game.generate
-
-
+    redirect_to "/games/#{game.id}/play"
   end
 
   def show_field

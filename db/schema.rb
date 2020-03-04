@@ -98,6 +98,7 @@ ActiveRecord::Schema.define(version: 2020_03_04_022551) do
     t.integer "range_of_sight"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "name"
   end
 
   create_table "users", force: :cascade do |t|

@@ -9,7 +9,7 @@ class Game < ApplicationRecord
   has_many :game_objects
 
  
-  def generate
+  def generate(heroname)
     self.update(board_width: 100, board_heigth: 100, initial_zombies: 100, initial_npc: 10)
 
     obstacles = []

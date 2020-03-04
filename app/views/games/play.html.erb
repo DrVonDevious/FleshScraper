@@ -1,0 +1,40 @@
+
+<div class='game-screen'>
+
+  <div class="controls-panel">
+    <div class="player-view">
+      <%# <img src="user_image_01.jpg"> %>
+    </div>
+    <div class="player-stats">
+      HP: 10
+      Attack: 20
+      Defence: 3
+      Speed: 1
+    </div>
+    <div class="player-commands">
+      <div class="nav-commands">
+        <%# window.location returns the current browser url using JS. %>
+        <%= button_tag "NW", { class: "nav-button", onclick: "window.location = '#'" } %>
+        <%= button_tag "N", { class: "nav-button", onclick: "window.location = '#'" } %>
+        <%= button_tag "NE", { class: "nav-button", onclick: "window.location = '#'" } %>
+        <%= button_tag "W", { class: "nav-button", onclick: "window.location = '#'" } %>
+        <%= button_tag "Wait", { class: "nav-button", onclick: "window.location = '#'" } %>
+        <%= button_tag "E", { class: "nav-button", onclick: "window.location = '#'" } %>
+        <%= button_tag "SE", { class: "nav-button", onclick: "window.location = '#'" } %>
+        <%= button_tag "S", { class: "nav-button", onclick: "window.location = '#'" } %>
+        <%= button_tag "SW", { class: "nav-button", onclick: "window.location = '#'" } %>
+      </div>
+      <div class="action-commands">
+        <button class="action-button">Use Item</button>
+        <%= button_tag "Use Item", { class: "action-button", onclick: "window.location = '#'" } %>
+        <%= button_tag "", { class: "action-button", onclick: "window.location = '#'" } %>
+        <button class="action-button">Quit Game</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="field", class='game-map'>
+    <%=@game.print%>
+  </div>
+
+</div>

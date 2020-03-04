@@ -3,6 +3,11 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
+.game-screen {
+}
+
+.game-map {
+}
 
 .game-menu-frame {
   width: 100%;
@@ -35,4 +40,71 @@
   background-color: red;
   color: white;
 }
+
+.controls-panel {
+  float: right;
+  padding-top: 40px;
+  height: 648px;
+  width: 20%;
+  background-color: gray;
+}
+
+.player-view {
+  height: 200px;
+  background-image: url("user_image_01.jpg");
+  background-size: cover;
+}
+
+.player-stats {
+  padding-top: 20px;
+  text-align: center;
+}
+
+.nav-commands {
+  margin: 0;
+  text-align: center;
+  padding-top: 40px;
+  padding-left: 16px;
+  padding-right: 16px;
+  display: grid;
+  grid-template-columns: auto auto auto;
+}
+
+.action-commands {
+  text-align: center;
+  padding-top: 40px;
+  display: block;
+}
+
+.nav-button {
+  margin-top: 4px;
+  margin-left: 2px;
+  margin-right: 2px;
+  background-color: #707070;
+  border: none;
+  padding: 16px;
+  text-decoration: none;
+  font-family:'Roboto',sans-serif;
+  outline: none;
+}
+
+.nav-button:active {
+  background-color: #545454;
+}
+
+.action-button {
+  margin-top: 20px;
+  background-color: #707070;
+  border: none;
+  padding: 16px 16px;
+  width: 100px;
+  text-decoration: none;
+  font-family:'Roboto',sans-serif;
+  outline: none;
+}
+
+.action-button:active {
+  background-color: #545454;
+}
+
 
