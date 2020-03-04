@@ -10,12 +10,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_02_205602) do
+ActiveRecord::Schema.define(version: 2020_03_04_022551) do
 
   create_table "cells", force: :cascade do |t|
     t.integer "x"
     t.integer "y"
     t.string "picture_url"
+    t.integer "game_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "game_objects", force: :cascade do |t|
+    t.boolean "is_alive"
+    t.string "css_class"
+    t.integer "x"
+    t.integer "y"
+    t.string "game_type"
+    t.integer "hp"
+    t.integer "attack"
+    t.integer "defence"
+    t.integer "speed"
+    t.integer "level_points"
+    t.integer "range_of_sight"
+    t.boolean "destructible"
     t.integer "game_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

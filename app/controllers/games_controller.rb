@@ -8,6 +8,7 @@ class GamesController < ApplicationController
     Game.delete_all
     Zombie.delete_all
     Obstacle.delete_all
+    GameObject.delete_all
     @game = Game.create
     @game.generate
   end
