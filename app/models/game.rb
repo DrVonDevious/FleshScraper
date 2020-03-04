@@ -9,36 +9,25 @@ class Game < ApplicationRecord
   has_many :game_objects
 
  
-  def generate(heroname)
+  def generate(heroname = "Arthur")
     self.update(board_width: 100, board_heigth: 100, initial_zombies: 100, initial_npc: 10)
-
     # generate player
     player = GameObject.generate_player(self)
     GameObject.insert(player)
-
-    # generate obstacles
-    obstacles = []
-
+    object_array = []
     (self.board_width * 3).times do
-
-      obstacles << GameObject.create_random(self, "obstacle")
-
+      object_array << GameObject.create_random(self, "obstacle")
     end
-
-    GameObject.insert_all(obstacles)
-
-
-    # generate the zombies
-
-    zombies = []
-    while zombies.length < self.initial_zombies do
-
-      zombies << GameObject.create_random(self, "zombie")
-
+    while object_array.length < self.initial_zombies + (self.board_width * 3) do
+      object_array << GameObject.create_random(self, "zombie")
     end
-
-    GameObject.insert_all(zombies)
-
+    while object_array.length < self.initial_zombies + self.initial_npc + (self.board_width * 3) do
+      object_array << GameObject.create_random(self, "npc")
+    end
+    while object_array.length < self.initial_zombies + self.initial_npc + (self.board_width * 4) do
+      object_array << GameObject.create_random(self, "item")
+    end
+    GameObject.insert_all(object_array)
   end
 
 
@@ -51,14 +40,21 @@ class Game < ApplicationRecord
     result.html_safe
   end
 
+
   def move_player(direction)
     player = self.game_objects.find { |obj| obj.game_type == "player" }
     player.move_player(direction)
   end
 
+
+
+  def mobs
+    self.game_objects.where(game_type: ["zombie", "npc"])
+  end
+
   def make_a_turn
-    self.zombies.each { |zombie|
-      zombie.make_a_move
+    self.mobs.each { |mob|
+      mob.make_a_move
     }
   end
 end

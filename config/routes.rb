@@ -29,4 +29,5 @@ Rails.application.routes.draw do
   get '/games/:id/play', to: 'games#play'
   get '/move/:direction', to: 'games#move_player', as: 'move'
 
+
 end

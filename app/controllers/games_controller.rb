@@ -49,7 +49,7 @@ class GamesController < ApplicationController
   end
 
   def next_turn
-    @game = Game.first
+    @game = Game.find_by(params[:id])
     @game.make_a_turn
     render :play
   end

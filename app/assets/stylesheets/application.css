@@ -27,6 +27,8 @@
   min-height: 200px;
   max-height: 880px;
   margin-top: 40px;
+  background-attachment: local;
+
  }
 
 
@@ -43,6 +45,8 @@
    background-size: cover;
  }
 
+
+
  #obstacle {
 
   
@@ -53,6 +57,19 @@
   height: 40px; 
   max-height:40px; 
   background-image: url('obstacle.png');
+  background-size: 40px;
+}
+
+#item {
+
+  
+  width: 40px; 
+  margin: 0px;
+  padding: 0px;
+  max-width: 40px; 
+  height: 40px; 
+  max-height:40px; 
+  background-image: url('crate.png');
   background-size: 40px;
 }
 
@@ -76,7 +93,7 @@
   max-width: 40px; 
   height: 40px; 
   max-height:40px; 
-  background-image: url('npc.png');
+  background-image: url('player.png');
   background-size: 40px;
 }
 
