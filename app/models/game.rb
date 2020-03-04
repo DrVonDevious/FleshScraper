@@ -11,6 +11,9 @@ class Game < ApplicationRecord
  
   def generate(heroname = "Arthur")
     self.update(board_width: 100, board_heigth: 100, initial_zombies: 100, initial_npc: 10)
+    # generate player
+    player = GameObject.generate_player(self)
+    GameObject.insert(player)
     object_array = []
     (self.board_width * 3).times do
       object_array << GameObject.create_random(self, "obstacle")
@@ -24,19 +27,8 @@ class Game < ApplicationRecord
     while object_array.length < self.initial_zombies + self.initial_npc + (self.board_width * 4) do
       object_array << GameObject.create_random(self, "item")
     end
-    
     GameObject.insert_all(object_array)
-
-
-
-
-
-
   end
-
-
-
- 
 
 
   def print
@@ -47,6 +39,14 @@ class Game < ApplicationRecord
     }
     result.html_safe
   end
+
+
+  def move_player(direction)
+    player = self.game_objects.find { |obj| obj.game_type == "player" }
+    player.move_player(direction)
+  end
+
+
 
   def mobs
     self.game_objects.where(game_type: ["zombie", "npc"])

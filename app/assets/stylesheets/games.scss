@@ -4,6 +4,7 @@
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
 .game-screen {
+  overflow: scroll;
 }
 
 .game-map {
@@ -44,6 +45,7 @@
 .controls-panel {
   float: right;
   padding-top: 40px;
+  margin-left: 40px;
   height: 648px;
   width: 20%;
   background-color: gray;

@@ -29,14 +29,11 @@ class GamesController < ApplicationController
   end
 
   def create
-    Cell.delete_all
     Game.delete_all
-    Zombie.delete_all
-    Obstacle.delete_all
     game = Game.new(game_params)
     game.save
     game.update(user_id: session[:user_id], is_running: true)
-    game.generate
+    game.generate("Arthur")
     redirect_to "/games/#{game.id}/play"
   end
 
@@ -44,10 +41,17 @@ class GamesController < ApplicationController
     @game = Game.first
   end
 
+  def move_player
+    @game = Game.find_by(id: 33)
+    @game.move_player(params[:direction])
+    @game.make_a_turn
+    render :play
+  end
+
   def next_turn
     @game = Game.find_by(params[:id])
     @game.make_a_turn
-    redirect_to play_path(@game)
+    render :play
   end
 
   private
