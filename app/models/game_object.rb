@@ -100,6 +100,9 @@ class GameObject < ApplicationRecord
     self.game.game_objects.where(game_type: hunting_types,x: (self.x-self.range_of_sight..self.x+self.range_of_sight).to_a, y: (self.y-self.range_of_sight..self.y+self.range_of_sight).to_a) - [self]
   end
 
+  def cells_in_sight(distance)
+  end
+
   def nearest_target
     targets_in_sight.min_by { |target|
       Math.sqrt((target.x - self.x)**2+(target.y - self.y)**2)
@@ -117,27 +120,25 @@ class GameObject < ApplicationRecord
   end
 
   def print
-    div_open = "<div id= \"#{self.css_class}\" style = \"grid-column-start: #{self.x}; grid-column-end: #{self.x}; grid-row-start: #{self.y}; grid-row-end: #{self.y}\">".html_safe
+    div_open = "<div id= \"#{self.css_class}\" style = \"grid-column-start: #{self.x}; grid-row-start: #{self.y};\">".html_safe
     div_close = "</div>".html_safe
     "#{div_open}#{self.x}:#{self.y}#{div_close}"
   end
-
 
 
   def attack(object)
   end
 
 
-
   # Player Commands
   def move_player(direction)
     case direction
     when "northeast"
-      self.update(y: self.y - 1, x: self.x - 1) if collision?([-1, -1])
+      self.update(y: self.y - 1, x: self.x + 1) if collision?([+1, -1])
     when "north"
       self.update(y: self.y - 1) if collision?([0, -1])
     when "northwest"
-      self.update(y: self.y - 1, x: self.x + 1) if collision?([+1, -1])
+      self.update(y: self.y - 1, x: self.x - 1) if collision?([-1, -1])
     when "east"
       self.update(x: self.x + 1) if collision?([+1, 0])
     when "west"

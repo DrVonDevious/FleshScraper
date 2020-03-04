@@ -46,13 +46,13 @@ class GamesController < ApplicationController
     @game = Game.find_by(id: session[:game_id])
     @game.move_player(params[:direction])
     @game.make_a_turn
-    render :play
+    redirect_to "/games/#{@game.id}/play"
   end
 
   def next_turn
     @game = Game.find_by(params[:id])
     @game.make_a_turn
-    render :play
+    redirect_to "/games/#{@game.id}/play"
   end
 
   private

@@ -33,6 +33,12 @@
 
   <div id="field", class='game-map'>
     <%=@game.print%>
+    <script>
+      player = document.getElementById("player")
+      board = document.getElementById("field")
+      board.scrollLeft = player.offsetLeft - board.offsetLeft - (board.clientWidth / 2)
+      board.scrollTop = player.offsetTop - board.offsetTop - (board.clientHeight / 2)
+    </script>
   </div>
 
 </div>
