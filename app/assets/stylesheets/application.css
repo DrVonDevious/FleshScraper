@@ -19,11 +19,15 @@
   display: grid;
   grid-template-columns: repeat(100, 1fr); 
   grid-template-rows: repeat(100, 1fr); 
+  background-image: url('field-backgroung.jpg');  
+  background-size: 40px;
+  background-repeat: repeat;
   overflow: scroll;
   width: 78%;
   min-height: 200px;
   max-height: 880px;
   margin-top: 40px;
+
  }
 
 

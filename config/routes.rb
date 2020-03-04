@@ -2,8 +2,10 @@ Rails.application.routes.draw do
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
+  #this is only for testing purposes
   get '/testfield', to: 'games#random', as: 'random'
-
+  get '/nextturn', to: 'games#next_turn', as: 'next_turn'
+  get '/showfield', to: 'games#show_field', as: 'show_field'
 
 
   # Session routes

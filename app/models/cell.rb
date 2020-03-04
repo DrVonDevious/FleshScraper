@@ -39,9 +39,15 @@ class Cell < ApplicationRecord
   #   end
   # end
 
-  # def nearest_cells
-  #   [self.north, self.south, self.east, self.west].compact
-  # end
+  def nearest_cells
+    self.game.cells.where(x: (self.x-1)...(self.x+2), y: (self.y-1)...(self.y+2))   # SELECT COUNT(*) FROM "cells" WHERE "cells"."game_id" = ? AND "cells"."x" >= ? AND "cells"."x" < ? AND "cells"."y" >= ? AND "cells"."y" < ? 
+  end
+
+  def nearest_free_cells
+    nearest_cells.select{ |cell|
+      !cell.obstacle && !cell.zombie && !cell.non_player_charachter && !cell.item && !cell.player && cell != self
+    }
+  end
 
   def self.print(hash,x,y)
     div_open = "<div id= \"cell\" style = \"grid-column-start: #{x}; grid-column-end: #{x}; grid-row-start: #{y}; grid-row-end: #{y}\">".html_safe
