@@ -28,11 +28,14 @@ class GamesController < ApplicationController
   end
 
   def create
+    Cell.delete_all
+    Game.delete_all
+    Zombie.delete_all
+    Obstacle.delete_all
     game = Game.new(game_params)
     game.save
     game.update(user_id: session[:user_id], is_running: true)
-    #game.generate
-    #game.save
+    game.generate
     redirect_to "/games/#{game.id}/play"
   end
 

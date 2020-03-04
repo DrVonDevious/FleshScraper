@@ -3,7 +3,7 @@
 
   <div class="controls-panel">
     <div class="player-view">
-      <img src="/app/assets/images/user_image_01.jpg" width="264" height="184">
+      <%# <img src="user_image_01.jpg"> %>
     </div>
     <div class="player-stats">
       HP: 10
@@ -12,19 +12,21 @@
       Speed: 1
     </div>
     <div class="player-commands">
-      <%= button_tag "⬁" %>
-      <%= button_tag "⇧" %>
-      <%= button_tag "⬀" %>
-      <%= button_tag "⇦" %>
-      <%= button_tag " " %>
-      <%= button_tag "⇨" %>
-      <%= button_tag "⬃" %>
-      <%= button_tag "⇩" %>
-      <%= button_tag "⬂" %>
+      <button class="nav-button">NW</button>
+      <button class="nav-button">N</button>
+      <button class="nav-button">NE</button>
+      <button class="nav-button">W</button>
+      <button class="nav-button">Wait</button>
+      <button class="nav-button">E</button>
+      <button class="nav-button">SW</button>
+      <button class="nav-button">S</button>
+      <button class="nav-button">SE</button>
+      <button class="action-button">Use Item</button>
+      <button class="action-button">Quit Game</button>
     </div>
   </div>
 
-  <div id="field">
+  <div id="field", class='game-map'>
     <%=@game.print%>
   </div>
 

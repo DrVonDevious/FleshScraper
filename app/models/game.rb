@@ -13,11 +13,11 @@ class Game < ApplicationRecord
     # generate the board
     cells = []
     (0...self.board_width).each { |x|
-      
+
       (0...self.board_heigth).each { |y|
         cells << {game_id: self.id, x: x, y: y, picture_url: "/app/assets/images/grass.png", created_at: Time.now, updated_at: Time.now}
       }
-      
+
     }
 
     Cell.insert_all(cells)

@@ -3,6 +3,11 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
+.game-screen {
+}
+
+.game-map {
+}
 
 .game-menu-frame {
   width: 100%;
@@ -38,23 +43,43 @@
 
 .controls-panel {
   float: right;
-  height: 600px;
+  padding-top: 40px;
+  height: 548px;
   width: 20%;
   background-color: gray;
 }
 
 .player-view {
-  padding-top: 20px;
-  padding-bottom: 10px;
-  padding-left: 50px;
+  height: 140px;
+  background-image: url("user_image_01.jpg");
+  background-size: cover;
 }
 
 .player-stats {
+  padding-top: 20px;
   text-align: center;
 }
 
 .player-commands {
   text-align: center;
   padding-top: 40px;
+  display: block;
 }
+
+.nav-button {
+  margin-top: 4px;
+  background-color: #707070;
+  border: none;
+  padding: 16px 32px;
+  width: 80px;
+}
+
+.action-button {
+  margin-top: 20px;
+  background-color: #707070;
+  border: none;
+  padding: 16px 16px;
+  width: 100px;
+}
+
 
