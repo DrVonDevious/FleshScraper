@@ -33,6 +33,16 @@ class GamesController < ApplicationController
 
   end
 
+  def show_field
+    @game = Game.first
+  end
+
+  def next_turn
+    @game = Game.first
+    @game.make_a_turn
+    redirect_to show_field_path
+  end
+
   private
 
   def game_params
@@ -41,5 +51,7 @@ class GamesController < ApplicationController
                                  :current_score, :is_running,
                                  :user_id)
   end
+
+
 
 end

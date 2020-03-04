@@ -1,5 +1,5 @@
 class Game < ApplicationRecord
-  belongs_to :user
+  # belongs_to :user
   has_many :cells
   has_many :zombies, through: :cells
   has_many :players, through: :cells
@@ -86,7 +86,7 @@ class Game < ApplicationRecord
   end
 
   def game_field
-    # t = Time.now
+    t = Time.now
     temp = {}
     self.cells.each{ |cell|
       if !temp[cell.x]
@@ -97,17 +97,27 @@ class Game < ApplicationRecord
       end
       temp[cell.x][cell.y][:cell] = cell
     }
-    self.obstacles.each{ |obstacle|
-      temp[obstacle.cell.x][obstacle.cell.y][:obstacle] = obstacle
-    }
-    self.zombies.each{ |zombie|
-    temp[zombie.cell.x][zombie.cell.y][:zombie] = zombie
-    }
+    cells = Cell.joins(:obstacle).where(game_id: self.id).order(:id)
+    obstacles = self.obstacles.order(:cell_id)
+    count = obstacles.count - 1
+    for i in 0..count
+      temp[cells[i][:x]][cells[i][:y]][:obstacle] = obstacles[i]
+    end
+    cells = Cell.joins(:zombie).where(game_id: self.id).order(:id)
+    zombies = self.zombies.order(:cell_id)
+    count = zombies.count - 1
+    for i in 0..count
+      temp[cells[i][:x]][cells[i][:y]][:zombie] = zombies[i]
+    end
+
+    # self.zombies.each{ |zombie|
+    # temp[zombie.cell.x][zombie.cell.y][:zombie] = zombie
+    # }
     self.non_player_charachters.each{ |npc|
       temp[npc.cell.x][npc.cell.y][:npc] = npc
     }
-    # a = Time.now - t
-    # a
+    a = Time.now - t
+    puts a
     temp
   end
 
@@ -121,5 +131,12 @@ class Game < ApplicationRecord
       }
     }
     result.html_safe
+  end
+
+  def make_a_turn
+    self.zombies.each { |zombie|
+
+      zombie.make_a_move
+    }
   end
 end
