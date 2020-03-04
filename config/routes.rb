@@ -26,6 +26,6 @@ Rails.application.routes.draw do
   get '/games', to: 'games#index'
   get '/games/new', to: 'games#new'
   post '/games', to: 'games#create'
-  get '/games/:id/play', to: 'games#play'
+  get '/games/:id/play', to: 'games#play', as: 'play'
 
 end

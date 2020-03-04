@@ -45,9 +45,9 @@ class GamesController < ApplicationController
   end
 
   def next_turn
-    @game = Game.first
+    @game = Game.find_by(params[:id])
     @game.make_a_turn
-    redirect_to show_field_path
+    redirect_to play_path(@game)
   end
 
   private
