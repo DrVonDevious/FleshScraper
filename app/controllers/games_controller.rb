@@ -33,6 +33,7 @@ class GamesController < ApplicationController
     game = Game.new(game_params)
     game.save
     game.update(user_id: session[:user_id], is_running: true)
+    session[:game_id] = game.id
     game.generate("Arthur")
     redirect_to "/games/#{game.id}/play"
   end
@@ -42,7 +43,7 @@ class GamesController < ApplicationController
   end
 
   def move_player
-    @game = Game.find_by(id: 33)
+    @game = Game.find_by(id: session[:game_id])
     @game.move_player(params[:direction])
     @game.make_a_turn
     render :play

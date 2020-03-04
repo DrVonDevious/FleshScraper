@@ -18,17 +18,15 @@
         <%= button_tag "N", { class: "nav-button", onclick: "window.location = '/move/north'" } %>
         <%= button_tag "NE", { class: "nav-button", onclick: "window.location = '/move/northeast'" } %>
         <%= button_tag "W", { class: "nav-button", onclick: "window.location = '/move/west'" } %>
-        <%= button_tag "Wait", { class: "nav-button", onclick: "window.location = next_turn_path" } %>
+        <%= button_tag "Wait", { class: "nav-button", onclick: "window.location = '/nextturn'" } %>
         <%= button_tag "E", { class: "nav-button", onclick: "window.location = '/move/east'" } %>
         <%= button_tag "SW", { class: "nav-button", onclick: "window.location = '/move/southwest'" } %>
         <%= button_tag "S", { class: "nav-button", onclick: "window.location = '/move/south'" } %>
         <%= button_tag "SE", { class: "nav-button", onclick: "window.location = '/move/southeast'" } %>
       </div>
       <div class="action-commands">
-        <button class="action-button">Use Item</button>
         <%= button_tag "Use Item", { class: "action-button", onclick: "window.location = '#'" } %>
-        <%= button_tag "", { class: "action-button", onclick: "window.location = '#'" } %>
-        <button class="action-button">Quit Game</button>
+        <%= button_tag "Quit Game", { class: "action-button", onclick: "window.location = '#'" } %>
       </div>
     </div>
   </div>
