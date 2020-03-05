@@ -84,6 +84,8 @@
   max-height:40px; 
   background-image: url('zombie.png');
   background-size: 40px;
+  display: flex;
+  align-items: center;
 }
 
 #npc {
@@ -95,6 +97,8 @@
   max-height:40px; 
   background-image: url('npc.png');
   background-size: 40px;
+  display: flex;
+  align-items: center;
 }
 
 #player {

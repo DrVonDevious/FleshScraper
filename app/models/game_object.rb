@@ -44,19 +44,24 @@ class GameObject < ApplicationRecord
     x = rand(1..game.board_width)
     y = rand(1..game.board_heigth)
     hash = {x: x, y: y, game_id: game.id, is_alive: is_alive, css_class: css_class, game_type: type, created_at: Time.now, updated_at: Time.now}
-    if type == "zombie" || type == "player" || type == "npc"
+ 
+    if type == "zombie" || type == "npc"
       hp = level * 2 * 3
+      name =  "Ex-#{Faker::Name.name}"
       range_of_sight = 5
       attack = rand(1...level)
       defence = level * 2 - attack
       speed = 1
       if type != "zombie"
-        hp *= 2
+        name = Faker::Name.name
+        hp *= 4
+        attack *= 4
+        defence *= 4
         range_of_sight *= 2
       end
-      hash.merge(hp: hp, attack: attack, defence: defence, speed: speed, range_of_sight: range_of_sight)
+      hash = hash.merge(hp: hp, attack: attack, name: name, defence: defence, speed: speed, range_of_sight: range_of_sight)
     end
-    
+    hash
   end
 
 
@@ -108,11 +113,23 @@ end
 
 def open_the_crate(target)
   target.destroy
-  current_item = GameObject.get_item_by_name(item_name)
   new_item = GameObject.random_item
-  if current_item
-
+  if new_item[:type] == "medical"
+    self.wear_item(new_item)
   else
+    if new_item[:type] == "weapon"
+      current_item = GameObject.get_item_by_name(self.weapon)
+    else
+      current_item = GameObject.get_item_by_name(self.armor)
+    end
+    if !current_item || (current_item[:level] < new_item[:level])
+      self.wear_item(new_item)
+      if new_item[:type] == "weapon"
+        self.update(weapon: new_item[:name])
+      else
+        self.update(armor: new_item[:name])
+      end
+    end
 
   end
 end
@@ -134,12 +151,18 @@ end
 
 
 def targets_in_sight
-  hunting_types  = ["zombie", "player", "npc", "crate"] - [self.game_type]
+  hunting_types  = ["zombie", "player", "npc", "item"] - [self.game_type]
+  if self.game_type == "zombie"
+    hunting_types -= ["item"]
+  end
   self.game.game_objects.where(game_type: hunting_types,x: (self.x-self.range_of_sight..self.x+self.range_of_sight).to_a, y: (self.y-self.range_of_sight..self.y+self.range_of_sight).to_a) - [self]
 end
 
 def targets_in_attack_range
-  hunting_types  = ["zombie", "player", "npc", "crate"] - [self.game_type]
+  hunting_types  = ["zombie", "player", "npc", "item"] - [self.game_type]
+  if self.game_type == "zombie"
+    hunting_types -= ["item"]
+  end
   self.game.game_objects.where(game_type: hunting_types,x: (self.x-1..self.x+1).to_a, y: (self.y-1..self.y+1).to_a) - [self]
 end
 
@@ -160,7 +183,7 @@ def distance_to_target(start_x, start_y, target_x, target_y)
 end
 
 def print
-  div_open = "<div id= \"#{self.css_class}\" style = \"grid-column-start: #{self.x}; grid-column-end: #{self.x}; grid-row-start: #{self.y}; grid-row-end: #{self.y}\">".html_safe
+  div_open = "<div id= \"#{self.css_class}\" style = \"grid-column: #{self.x}; grid-row: #{self.y};\">".html_safe
   div_close = "</div>".html_safe
   "#{div_open}#{self.x}:#{self.y}#{div_close}"
 end
@@ -168,7 +191,7 @@ end
 def attack_target(object)
   while object.is_alive && self.is_alive
     hit = rand(0..self.attack)
-    if hit == self.attack
+    if rand(0..10) == 10
       object.hp -= hit*2
     else
       object.hp -= hit - [rand(0..object.defence), hit].min  
@@ -186,7 +209,7 @@ def attack_target(object)
       end
     end
     hit = rand(0..object.attack)
-    if hit == object.attack
+    if rand(0..10) == 10
       self.hp -= hit*2
     else
       self.hp -= hit - [rand(0..self.defence), hit].min  

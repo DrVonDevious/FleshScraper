@@ -10,6 +10,8 @@
       Attack: 20
       Defence: 3
       Speed: 1
+      Gamedata : <%=@game.game_objects.group(:game_type).count%>
+      Myboy Stats <%=GameObject.find_by(name: "Poludurok").inspect%>
     </div>
     <div class="player-commands">
       <div class="nav-commands">

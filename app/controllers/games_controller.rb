@@ -30,6 +30,7 @@ class GamesController < ApplicationController
 
   def create
     Game.delete_all
+    GameObject.delete_all
     game = Game.new(game_params)
     game.save
     game.update(user_id: session[:user_id], is_running: true)
@@ -45,13 +46,13 @@ class GamesController < ApplicationController
     @game = Game.find_by(id: 33)
     @game.move_player(params[:direction])
     @game.make_a_turn
-    render :play
+    redirect_to "/games/#{@game.id}/play"
   end
 
   def next_turn
     @game = Game.find_by(params[:id])
     @game.make_a_turn
-    render :play
+    redirect_to "/games/#{@game.id}/play"
   end
 
   private
