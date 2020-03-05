@@ -26,7 +26,7 @@
       </div>
       <div class="action-commands">
         <%= button_tag "Use Item", { class: "action-button", onclick: "window.location = '#'" } %>
-        <%= button_tag "Quit Game", { class: "action-button", onclick: "window.location = '#'" } %>
+        <%= button_tag "Quit Game", { class: "action-button", onclick: "window.location = '/games/#{@game.id}/quit'" } %>
       </div>
     </div>
   </div>

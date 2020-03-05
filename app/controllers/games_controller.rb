@@ -38,6 +38,16 @@ class GamesController < ApplicationController
     redirect_to "/games/#{game.id}/play"
   end
 
+  def destroy
+    @game = Game.find_by(params[:id])
+    @objects = GameObject.where(game_id: @game.id)
+    @objects.destroy_all
+    @game.destroy
+    redirect_to '/games/menu'
+  end
+
+  # Functional routes
+
   def show_field
     @game = Game.first
   end

@@ -22,12 +22,10 @@ Rails.application.routes.draw do
   get 'static/about'
 
   # Game routes
+  resources :games, only: [:new, :create, :index]
   get '/games/menu', to: 'games#menu'
-  get '/games', to: 'games#index'
-  get '/games/new', to: 'games#new'
-  post '/games', to: 'games#create'
   get '/games/:id/play', to: 'games#play'
   get '/move/:direction', to: 'games#move_player', as: 'move'
-
+  get '/games/:id/quit', to: 'games#destroy', as: 'quit_game'
 
 end
