@@ -49,6 +49,9 @@
         <%= button_tag "Use Item", { class: "action-button", onclick: "window.location = '#'" } %>
         <%= button_tag "Quit Game", { class: "action-button", onclick: "window.location = '/games/#{@game.id}/quit'" } %>
       </div>
+      <div class="delete-command">
+        <%= button_tag "Delete Game", { class: "delete-button", onclick: "window.location = '/games/#{@game.id}/delete'" }%>
+      </div>
     </div>
   </div>
 

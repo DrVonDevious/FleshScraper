@@ -41,6 +41,10 @@ class GamesController < ApplicationController
     game.generate(params[:game][:name])
     redirect_to "/games/#{game.id}/play"
   end
+  
+  def safe_exit
+    redirect_to '/games/menu'
+  end
 
   def destroy
     @game = Game.find_by(params[:id])
