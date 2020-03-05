@@ -25,7 +25,7 @@ class GameObject < ApplicationRecord
 
     hash = {x: x, y: y, game_id: game.id, is_alive: true,
             css_class: css_class, game_type: game_type,
-            created_at: Time.now, updated_at: Time.now}
+            created_at: Time.now, updated_at: Time.now }
 
     hp = 20
     attack = 3
@@ -124,11 +124,6 @@ class GameObject < ApplicationRecord
     div_close = "</div>".html_safe
     "#{div_open}#{self.x}:#{self.y}#{div_close}"
   end
-
-
-  def attack(object)
-  end
-
 
   # Player Commands
   def move_player(direction)

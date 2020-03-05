@@ -13,6 +13,7 @@ class Game < ApplicationRecord
     self.update(board_width: 100, board_heigth: 100, initial_zombies: 100, initial_npc: 10)
     # generate player
     player = GameObject.generate_player(self)
+    player.update(name: heroname)
     GameObject.insert(player)
     object_array = []
     (self.board_width * 3).times do
@@ -46,7 +47,14 @@ class Game < ApplicationRecord
     player.move_player(direction)
   end
 
-
+  def player_stats
+    player = self.game_objects.find { |obj| obj.game_type == "player" }
+    stats = { hp: player.hp,
+              attack: player.attack,
+              defence: player.defence,
+              speed: player.speed,
+              name: player.name }
+  end
 
   def mobs
     self.game_objects.where(game_type: ["zombie", "npc"])

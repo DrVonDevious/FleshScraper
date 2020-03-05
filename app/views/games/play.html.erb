@@ -5,24 +5,51 @@
     <div class="player-view">
       <%# <img src="user_image_01.jpg"> %>
     </div>
+<<<<<<< HEAD
     <div class="player-stats">i
       HP: 10
       Attack: 20
       Defence: 3
       Speed: 1
+=======
+    <div class="player-stats">
+      HP: <%= player_stats[:hp] %>
+      Attack: <%= player_stats[:attack] %>
+      Defence: <%= player_stats[:defence] %>
+      Speed: <%= player_stats[:speed] %>
+      Name: <%= player_stats[:name] %>
+>>>>>>> new-development
     </div>
     <div class="player-commands">
       <div class="nav-commands">
         <%# window.location returns the current browser url using JS. %>
-        <%= button_tag "NW", { class: "nav-button", onclick: "window.location = '/move/northwest'" } %>
-        <%= button_tag "N", { class: "nav-button", onclick: "window.location = '/move/north'" } %>
-        <%= button_tag "NE", { class: "nav-button", onclick: "window.location = '/move/northeast'" } %>
-        <%= button_tag "W", { class: "nav-button", onclick: "window.location = '/move/west'" } %>
-        <%= button_tag "Wait", { class: "nav-button", onclick: "window.location = '/nextturn'" } %>
-        <%= button_tag "E", { class: "nav-button", onclick: "window.location = '/move/east'" } %>
-        <%= button_tag "SW", { class: "nav-button", onclick: "window.location = '/move/southwest'" } %>
-        <%= button_tag "S", { class: "nav-button", onclick: "window.location = '/move/south'" } %>
-        <%= button_tag "SE", { class: "nav-button", onclick: "window.location = '/move/southeast'" } %>
+        <div class="nav-button">
+          <%= button_tag "", { class: "nav-nw", onclick: "window.location = '/move/northwest'" } %>
+        </div>
+        <div class="nav-button">
+          <%= button_tag "", { class: "nav-n", onclick: "window.location = '/move/north'" } %>
+        </div>
+        <div class="nav-button">
+          <%= button_tag "",  { class: "nav-ne", onclick: "window.location = '/move/northeast'" } %>
+        </div>
+        <div class="nav-button">
+          <%= button_tag "", { class: "nav-w", onclick: "window.location = '/move/west'" } %>
+        </div>
+        <div class="nav-button">
+          <%= button_tag "Wait", { class: "nav-button", onclick: "window.location = '/nextturn'" } %>
+        </div>
+        <div class="nav-button">
+          <%= button_tag "", { class: "nav-e", onclick: "window.location = '/move/east'" } %>
+        </div>
+        <div class="nav-button">
+          <%= button_tag "", { class: "nav-sw", onclick: "window.location = '/move/southwest'" } %>
+        </div>
+        <div class="nav-button">
+          <%= button_tag "", { class: "nav-s", onclick: "window.location = '/move/south'" } %>
+        </div>
+        <div class="nav-button">
+          <%= button_tag "", { class: "nav-se", onclick: "window.location = '/move/southeast'" } %>
+        </div>
       </div>
       <div class="action-commands">
         <%= button_tag "Use Item", { class: "action-button", onclick: "window.location = '#'" } %>

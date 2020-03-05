@@ -1,7 +1,9 @@
 
 class GamesController < ApplicationController
-  
+
   skip_before_action :verify_authenticity_token, only: [:create]
+
+  helper_method :player_stats
 
   def random
     Cell.delete_all
@@ -29,12 +31,13 @@ class GamesController < ApplicationController
   end
 
   def create
-    Game.delete_all
     game = Game.new(game_params)
+    Game.destroy_all
+    GameObject.destroy_all
     game.save
     game.update(user_id: session[:user_id], is_running: true)
     session[:game_id] = game.id
-    game.generate("Arthur")
+    game.generate(params[:game][:name])
     redirect_to "/games/#{game.id}/play"
   end
 
@@ -53,7 +56,7 @@ class GamesController < ApplicationController
   end
 
   def move_player
-    @game = Game.find_by(id: session[:game_id])
+    @game = Game.find_by(params[:id])
     @game.move_player(params[:direction])
     @game.make_a_turn
     redirect_to "/games/#{@game.id}/play"
@@ -65,6 +68,11 @@ class GamesController < ApplicationController
     redirect_to "/games/#{@game.id}/play"
   end
 
+  def player_stats
+    @game = Game.find_by(params[:id])
+    @game.player_stats
+  end
+
   private
 
   def game_params
@@ -73,7 +81,5 @@ class GamesController < ApplicationController
                                  :current_score, :is_running,
                                  :user_id)
   end
-
-
 
 end
