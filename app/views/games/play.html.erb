@@ -11,6 +11,8 @@
       Defence: <%= player_stats[:defence] %>
       Speed: <%= player_stats[:speed] %>
       Name: <%= player_stats[:name] %>
+      Gamedata : <%=@game.game_objects.group(:game_type).count%>
+      Myboy Stats <%=GameObject.find_by(name: "Poludurok").inspect%>
     </div>
     <div class="player-commands">
       <div class="nav-commands">

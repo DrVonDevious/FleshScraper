@@ -19,23 +19,27 @@ class Game < ApplicationRecord
     (self.board_width * 3).times do
       object_array << GameObject.create_random(self, "obstacle")
     end
-    while object_array.length < self.initial_zombies + (self.board_width * 3) do
-      object_array << GameObject.create_random(self, "zombie")
-    end
-    while object_array.length < self.initial_zombies + self.initial_npc + (self.board_width * 3) do
-      object_array << GameObject.create_random(self, "npc")
-    end
-    while object_array.length < self.initial_zombies + self.initial_npc + (self.board_width * 4) do
+    self.board_width.times do
       object_array << GameObject.create_random(self, "item")
     end
+    GameObject.insert_all(object_array)
+    object_array = []
+    self.initial_zombies.times do 
+      object_array << GameObject.create_random(self, "zombie")
+    end
+    self.initial_npc.times do 
+      object_array << GameObject.create_random(self, "npc")
+    end
+ 
     GameObject.insert_all(object_array)
   end
 
 
   def print
-    all_stuff = self.game_objects
+    all_stuff = self.game_objects.order(x: :asc, y: :asc)
     result = ""
     all_stuff.each { |game_object|
+  
        result += game_object.print
     }
     result.html_safe
