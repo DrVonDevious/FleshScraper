@@ -146,7 +146,7 @@ class GameObject < ApplicationRecord
       self.update(y: self.y + 1, x: self.x - 1) if collision?([-1, +1])
     end
   end
-
+  
   private
 
   def collision?(coords)
