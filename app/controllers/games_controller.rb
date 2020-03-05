@@ -16,7 +16,7 @@ class GamesController < ApplicationController
   end
 
   def play
-    @game = Game.find_by(params[:id])
+    @game = Game.find_by(id: params[:id])
   end
 
   def index
@@ -28,6 +28,7 @@ class GamesController < ApplicationController
   end
 
   def continue
+    @user = User.find_by(id: session[:user_id])
     @players = GameObject.where(game_type: "player")
   end
 
@@ -70,13 +71,13 @@ class GamesController < ApplicationController
   end
 
   def next_turn
-    @game = Game.find_by(params[:id])
+    @game = Game.find_by(id: params[:id])
     @game.make_a_turn
     redirect_to "/games/#{@game.id}/play"
   end
 
   def player_stats
-    @game = Game.find_by(params[:id])
+    @game = Game.find_by(id: params[:id])
     @game.player_stats
   end
 
