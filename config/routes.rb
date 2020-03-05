@@ -2,12 +2,6 @@ Rails.application.routes.draw do
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
-  #this is only for testing purposes
-  get '/testfield', to: 'games#random', as: 'random'
-  get '/nextturn', to: 'games#next_turn', as: 'next_turn'
-  get '/showfield', to: 'games#show_field', as: 'show_field'
-
-
   # Session routes
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
@@ -28,5 +22,6 @@ Rails.application.routes.draw do
   get '/move/:direction', to: 'games#move_player', as: 'move'
   get '/games/:id/quit', to: 'games#safe_exit', as: 'quit_game'
   get '/games/:id/delete', to: 'games#destroy', as: 'delete_game'
+  get '/nextturn', to: 'games#next_turn', as: 'next_turn'
 
 end
