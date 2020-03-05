@@ -21,6 +21,7 @@ class GamesController < ApplicationController
 
   def index
     @games = current_user.games
+    @players = GameObject.where(game_type: "player")
   end
 
   def menu
