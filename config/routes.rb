@@ -23,5 +23,6 @@ Rails.application.routes.draw do
   get '/games/:id/quit', to: 'games#safe_exit', as: 'quit_game'
   get '/games/:id/delete', to: 'games#destroy', as: 'delete_game'
   get '/nextturn', to: 'games#next_turn', as: 'next_turn'
+  get '/games/continue', to: 'games#continue', as: 'continue'
 
 end

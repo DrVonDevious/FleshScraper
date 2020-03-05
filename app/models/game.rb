@@ -45,7 +45,6 @@ class Game < ApplicationRecord
     result.html_safe
   end
 
-
   def move_player(direction)
     player = self.game_objects.find { |obj| obj.game_type == "player" }
     player.move_player(direction)

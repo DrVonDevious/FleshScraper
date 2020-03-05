@@ -1,0 +1,7 @@
+<h1>Select A Game To Continue</h1>
+
+<div class="menu-list">
+  <% @players.each do |player| %>
+    <div><%= link_to player.name, "/games/#{player.game_id}/play", { class: "menu-item" } %></div>
+  <% end %>
+</div>

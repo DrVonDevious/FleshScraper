@@ -27,13 +27,15 @@ class GamesController < ApplicationController
   def menu
   end
 
+  def continue
+    @players = GameObject.where(game_type: "player")
+  end
+
   def new
     @game = Game.new
   end
 
   def create
-    Game.delete_all
-    GameObject.delete_all
     game = Game.new(game_params)
     game.save
     game.update(user_id: session[:user_id], is_running: true)
