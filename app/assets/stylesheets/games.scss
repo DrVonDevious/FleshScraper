@@ -46,7 +46,7 @@
   float: right;
   padding-top: 40px;
   margin-left: 40px;
-  height: 648px;
+  height: 78%;
   width: 20%;
   background-color: gray;
 }
@@ -76,6 +76,26 @@
   text-align: center;
   padding-top: 80px;
   display: block;
+}
+
+.delete-command {
+  text-align: center;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  display: block;
+}
+
+.delete-button {
+  cursor: pointer;
+  margin: 0;
+  height: 40px;
+  width: 110px;
+  background-color: #707070;
+  color: darkred;
+  border: none;
+  text-decoration: none;
+  font-family: 'Roboto', sans-serif;
+  outline: none;
 }
 
 .nav-button {

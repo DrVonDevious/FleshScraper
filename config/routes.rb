@@ -26,6 +26,7 @@ Rails.application.routes.draw do
   get '/games/menu', to: 'games#menu'
   get '/games/:id/play', to: 'games#play'
   get '/move/:direction', to: 'games#move_player', as: 'move'
-  get '/games/:id/quit', to: 'games#destroy', as: 'quit_game'
+  get '/games/:id/quit', to: 'games#safe_exit', as: 'quit_game'
+  get '/games/:id/delete', to: 'games#destroy', as: 'delete_game'
 
 end
