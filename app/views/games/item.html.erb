@@ -1,0 +1,79 @@
+
+<div class='game-screen'>
+
+  <div class="controls-panel">
+    <div class="player-view">
+      <%# <img src="user_image_01.jpg"> %>
+    </div>
+    <div class="player-stats">
+      HP: <%= player_stats[:hp] %>
+      Attack: <%= player_stats[:attack] %>
+      Defence: <%= player_stats[:defence] %>
+      Speed: <%= player_stats[:speed] %>
+      Name: <%= player_stats[:name] %>
+
+    </div>
+    <div class="player-commands">
+      <div class="nav-commands">
+        <%# window.location returns the current browser url using JS. %>
+        <div class="nav-button">
+          <%= button_tag "", { class: "nav-nw", onclick: "window.location = '/move/northwest'" } %>
+        </div>
+        <div class="nav-button">
+          <%= button_tag "", { class: "nav-n", onclick: "window.location = '/move/north'" } %>
+        </div>
+        <div class="nav-button">
+          <%= button_tag "",  { class: "nav-ne", onclick: "window.location = '/move/northeast'" } %>
+        </div>
+        <div class="nav-button">
+          <%= button_tag "", { class: "nav-w", onclick: "window.location = '/move/west'" } %>
+        </div>
+        <div class="nav-button">
+          <%= button_tag "Wait", { class: "nav-button", onclick: "window.location = '/nextturn'" } %>
+        </div>
+        <div class="nav-button">
+          <%= button_tag "", { class: "nav-e", onclick: "window.location = '/move/east'" } %>
+        </div>
+        <div class="nav-button">
+          <%= button_tag "", { class: "nav-sw", onclick: "window.location = '/move/southwest'" } %>
+        </div>
+        <div class="nav-button">
+          <%= button_tag "", { class: "nav-s", onclick: "window.location = '/move/south'" } %>
+        </div>
+        <div class="nav-button">
+          <%= button_tag "", { class: "nav-se", onclick: "window.location = '/move/southeast'" } %>
+        </div>
+      </div>
+      <div class="action-commands">
+        <%= button_tag "Use Item", { class: "action-button", onclick: "window.location = '#'" } %>
+        <%= button_tag "Quit Game", { class: "action-button", onclick: "window.location = '/games/#{@game.id}/quit'" } %>
+      </div>
+      <div class="delete-command">
+        <%= button_tag "Delete Game", { class: "delete-button", onclick: "window.location = '/games/#{@game.id}/delete'" }%>
+      </div>
+    </div>
+  </div>
+
+  <div id="battlescreen" class ="game-map">
+    <h1>Congratulation, You find the item!<h1>
+    <div id="battlestats">
+      <h2> Item stats:</h2>
+      <ul id="battle_log">
+        <%@reward.each { |parameter, value|%>
+          <li><%="#{parameter}: #{value}"%></li>
+        <%}%>
+      </ul>
+      <br>
+      <br>
+      <ul id="battle_log">
+        <li><%=@phrase%></li>
+      </ul>
+    </div>
+    <div id= "ok_button">
+      <%= form_with url: "/games/#{@game.id}/play", method: :get do |f| %>
+        <%= f.submit value: "Continue", class: 'battle_button'%>
+      <% end %>
+    </div>
+  </div>
+
+</div>

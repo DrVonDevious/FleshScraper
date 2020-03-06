@@ -119,11 +119,6 @@ class GameObject < ApplicationRecord
       end
       if !current_item || (current_item[:level] < new_item[:level])
         self.wear_item(new_item)
-        if new_item[:type] == "weapon"
-          self.update(weapon: new_item[:name])
-        else
-          self.update(armor: new_item[:name])
-        end
       end
 
     end
@@ -133,6 +128,9 @@ class GameObject < ApplicationRecord
     self.attack += item[:attack]
     self.defence += item[:defence]
     self.hp += item[:hp]
+    if item[:type] != "medical"
+      self.write_attribute(item[:type], item[:name])
+    end
     self.save
   end
 
@@ -281,9 +279,27 @@ class GameObject < ApplicationRecord
     end
     event   
   end
-  
+
   def directions
     {"northeast": [1, -1], "north": [0, -1], "northwest": [-1, -1], "east": [1, 0], "west": [-1, 0], "southeast": [1, 1], "south": [0, 1], "southwest": [-1, 1]}
+  end
+
+  def use_item(item)
+    if item[:type] == "medical"
+      self.wear_item(item)
+      return "You deside that it is high time to increase your HP and immediately use #{item[:name]}"
+    else
+      current_item = GameObject.get_item_by_name(self.read_attribute(item[:type]))
+      if current_item && (current_item[:level] < item[:level])
+        self.wear_item(item)
+        return "You compare #{item[:name]} with #{current_item[:name]}, that was equiped and decide to take the #{item[:name]}. <br> You have to throw out the #{current_item[:name]} because you can't carry that much"
+      elsif current_item
+        return "You decide that yours #{current_item[:name]} is much better than #{item[:name]} <br> You have to throw out the #{item[:name]} because you can't carry that much"
+      else
+        self.wear_item(item)
+        return "You take the #{item[:name]}"
+      end
+    end
   end
   private
 
@@ -293,13 +309,15 @@ class GameObject < ApplicationRecord
     occupier = self.game.game_objects.find_by(x: self.x+coords[0], y: self.y+coords[1])
     if !occupier
       return true
-    elseif occupier.game_type == "obstacle"
-      return false
-    elseif occupier.game_type == "item"
-      return "item"
+    elsif occupier.game_type == "obstacle"
+      event = false
+    elsif occupier.game_type == "item"
+      event = "item"
     else
-      return "fight"
+      event = "fight"
     end 
+
+    event
   end
 
   def self.get_item_level(item_name)
@@ -317,6 +335,8 @@ class GameObject < ApplicationRecord
     end
     list.min_by {|item| item[:level]}
   end
+
+
 
   def self.item_list
     [

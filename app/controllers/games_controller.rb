@@ -50,7 +50,7 @@ class GamesController < ApplicationController
   end
 
   def destroy
-    @game = Game.find_by(params[:id])
+    @game = Game.find(params[:id])
     @objects = GameObject.where(game_id: @game.id)
     @objects.destroy_all
     @game.destroy
@@ -64,7 +64,7 @@ class GamesController < ApplicationController
   end
 
   def move_player
-    @game = Game.find(id: params[:id])
+    @game = Game.find(params[:id])
     event = @game.move_player(params[:direction])
     if event == "item"
       redirect_to "/games/#{@game.id}/item"
@@ -77,10 +77,19 @@ class GamesController < ApplicationController
   end
 
   def fight
-    @game = Game.find_by(params[:id])
+    @game = Game.find(params[:id])
     @player = @game.game_objects.find_by(game_type: "player")
     @opponent = @game.game_objects.where.not(game_type: "player").find_by(x: @player.x, y: @player.y)
     @log = @player.attack_target(@opponent)
+  end
+
+  def item
+    @game = Game.find(params[:id])
+    @player = @game.game_objects.find_by(game_type: "player")
+    @item = @game.game_objects.where(game_type: "item").find_by(x: @player.x, y: @player.y)
+    @item.destroy
+    @reward = GameObject.random_item
+    @phrase = @player.use_item(@reward).html_safe
   end
 
   def next_turn
