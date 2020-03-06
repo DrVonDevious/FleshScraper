@@ -20,10 +20,10 @@ Rails.application.routes.draw do
   resources :games, only: [:new, :create, :index]
   get '/games/menu', to: 'games#menu'
   get '/games/:id/play', to: 'games#play'
-  get '/move/:direction', to: 'games#move_player', as: 'move'
+  get '/games/:id/move/:direction', to: 'games#move_player', as: 'move'
   get '/games/:id/quit', to: 'games#safe_exit', as: 'quit_game'
   get '/games/:id/delete', to: 'games#destroy', as: 'delete_game'
-  get '/nextturn', to: 'games#next_turn', as: 'next_turn'
+  get '/games/:id/nextturn', to: 'games#next_turn', as: 'next_turn'
   get '/games/continue', to: 'games#continue', as: 'continue'
   get '/games/:id/item', to: 'games#item'
   get '/games/:id/fight', to: 'games#fight'
