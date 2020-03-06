@@ -24,12 +24,12 @@ class GameObject < ApplicationRecord
     x = 50
 
     hash = {x: x, y: y, game_id: game.id, is_alive: true,
-            css_class: css_class, game_type: game_type,
+            css_class: css_class, game_type: game_type, level_points: 0,
             created_at: Time.now, updated_at: Time.now }
 
-    hp = 20
-    attack = 3
-    defence = 3
+    hp = 25
+    attack = 5
+    defence = 5
     speed = 1
     range_of_sight = 5
 
@@ -49,8 +49,8 @@ class GameObject < ApplicationRecord
       hp = level * 2 * 3
       name =  "Ex-#{Faker::Name.name}"
       range_of_sight = 5
-      attack = rand(1...level)
-      defence = level * 2 - attack
+      attack = rand(1...level*2)
+      defence = rand(1...level*2)
       speed = 1
       if type != "zombie"
         name = Faker::Name.name
@@ -209,43 +209,57 @@ class GameObject < ApplicationRecord
   end
 
   def attack_target(object)
+    battle_log = ["#{self.name} bravely attack #{object.name}"]
+    self.weapon ? aw = self.weapon : aw = "powerful fist"
+    self.armor ? aa = self.armor : aa = "strong bones"
+    object.weapon ? dw = object.weapon : dw = "powerful fist"
+    object.armor ? da = object.armor : da = "strong bones"
     while object.is_alive && self.is_alive
       hit = rand(0..self.attack)
       if rand(0..10) == 10
         object.hp -= hit*2
+        battle_log << "#{self.name} critically hit #{object.name} with his #{aw} for #{hit*2}"
+        battle_log << "#{object.name} has #{object.hp} hitpoints left"
       else
-        object.hp -= hit - [rand(0..object.defence), hit].min  
+        hit = hit - [rand(0..object.defence), hit].min
+        object.hp -= hit  
+        battle_log << "#{self.name} slightly hit #{object.name} with his #{aw} for #{hit*2}"
+        battle_log << "#{object.name} #{da} decrease the hit and he has #{object.hp} hitpoints left"
       end
-      if object.hp < 0 
+      if object.hp < 1 
         object.is_alive = false
+        battle_log << "Finally, thats it #{object.name} is lying on the ground, dead!"
         object.game_type = "item"
         object.css_class = "item"
-        if self.game_type == "player"
-          self.level_points += 3
-        else
-          self.attack += 1
-          self.defence += 1
-          self.hp += 1
-        end
-      end
-      hit = rand(0..object.attack)
-      if rand(0..10) == 10
-        self.hp -= hit*2
+        self.attack += 1
+        self.defence += 1
+        self.hp += 1
       else
-        self.hp -= hit - [rand(0..self.defence), hit].min  
-      end
-      if self.hp < 0 
-        self.is_alive = false
-        self.game_type = "item"
-        self.css_class = "item"
-        object.attack += 1
-        object.defence += 1
-        object.hp += 1
+        hit = rand(0..object.attack)
+        if rand(0..10) == 10
+          self.hp -= hit*2
+          battle_log << "#{object.name} critically hit #{self.name} with his #{dw} for #{hit*2}"
+          battle_log << "#{self.name} has #{self.hp} hitpoints left"
+        else
+          hit = hit - [rand(0..self.defence), hit].min
+          self.hp -= hit 
+          battle_log << "#{self.name} slightly hit #{object.name} with his #{dw} for #{hit*2}"
+          battle_log << "#{object.name} #{aa} decrease the hit and he has #{object.hp} hitpoints left"
+        end
+        if self.hp < 1 
+          self.is_alive = false
+          battle_log << "Finally, thats it #{object.name} is lying on the ground, dead!"
+          self.game_type = "item"
+          self.css_class = "item"
+          object.attack += 1
+          object.defence += 1
+          object.hp += 1
+        end
       end
       self.save
       object.save
     end
-
+    battle_log
   end
 
   def distance_to_target(start_x, start_y, target_x, target_y)
@@ -260,30 +274,31 @@ class GameObject < ApplicationRecord
 
   # Player Commands
   def move_player(direction)
-    case direction
-    when "northeast"
-      self.update(y: self.y - 1, x: self.x + 1) if collision?([+1, -1])
-    when "north"
-      self.update(y: self.y - 1) if collision?([0, -1])
-    when "northwest"
-      self.update(y: self.y - 1, x: self.x - 1) if collision?([-1, -1])
-    when "east"
-      self.update(x: self.x + 1) if collision?([+1, 0])
-    when "west"
-      self.update(x: self.x - 1) if collision?([-1, 0])
-    when "southeast"
-      self.update(y: self.y + 1, x: self.x + 1) if collision?([+1, +1])
-    when "south"
-      self.update(y: self.y + 1) if collision?([0, +1])
-    when "southwest"
-      self.update(y: self.y + 1, x: self.x - 1) if collision?([-1, +1])
+    direction_xy = directions[direction.to_sym]
+    event = collision?(direction_xy)
+    if event
+      self.update(y: self.y + direction_xy[1], x: self.x + direction_xy[0])
     end
+    event   
   end
-  
+  def directions
+    {"northeast": [1, -1], "north": [0, -1], "northwest": [-1, -1], "east": [1, 0], "west": [-1, 0], "southeast": [1, 1], "south": [0, 1], "southwest": [-1, 1]}
+  end
   private
 
+
+
   def collision?(coords)
-    nearest_free_cells.include?(coords)
+    occupier = self.game.game_objects.find_by(x: self.x+coords[0], y: self.y+coords[1])
+    if !occupier
+      return true
+    elseif occupier.game_type == "obstacle"
+      return false
+    elseif occupier.game_type == "item"
+      return "item"
+    else
+      return "fight"
+    end 
   end
 
   def self.get_item_level(item_name)

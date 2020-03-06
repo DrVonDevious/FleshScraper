@@ -65,9 +65,22 @@ class GamesController < ApplicationController
 
   def move_player
     @game = Game.find_by(params[:id])
-    @game.move_player(params[:direction])
-    @game.make_a_turn
-    redirect_to "/games/#{@game.id}/play"
+    event = @game.move_player(params[:direction])
+    if event == "item"
+      redirect_to "/games/#{@game.id}/item"
+    elsif event == "fight"
+      redirect_to "/games/#{@game.id}/fight"
+    else
+      @game.make_a_turn
+      redirect_to "/games/#{@game.id}/play"
+    end
+  end
+
+  def fight
+    @game = Game.find_by(params[:id])
+    @player = @game.game_objects.find_by(game_type: "player")
+    @opponent = @game.game_objects.where.not(game_type: "player").find_by(x: @player.x, y: @player.y)
+    @log = @player.attack_target(@opponent)
   end
 
   def next_turn
