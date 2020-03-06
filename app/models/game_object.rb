@@ -143,8 +143,6 @@ class GameObject < ApplicationRecord
     self.save
   end
 
-
-
   def targets_in_sight
     hunting_types  = ["zombie", "player", "npc", "item"] - [self.game_type]
     if self.game_type == "zombie"
@@ -171,29 +169,7 @@ class GameObject < ApplicationRecord
     self.update(x: self.x + x, y: self.y + y)
   end
 
-  def make_a_move
-    if self.targets_in_sight.count > 0 
-      chosen = direction_to_nearest
-    else
-      chosen = self.nearest_free_cells.sample
-    end
-    if chosen 
-      self.move(chosen[0], chosen[1])
-    end
-  end
-
-  def targets_in_sight
-    hunting_types  = ["zombie", "player", "npc"] - [self.game_type]
-    self.game.game_objects.where(game_type: hunting_types,x: (self.x-self.range_of_sight..self.x+self.range_of_sight).to_a, y: (self.y-self.range_of_sight..self.y+self.range_of_sight).to_a) - [self]
-  end
-
   def cells_in_sight(distance)
-  end
-
-  def nearest_target
-    targets_in_sight.min_by { |target|
-      Math.sqrt((target.x - self.x)**2+(target.y - self.y)**2)
-    }
   end
 
   def direction_to_nearest
@@ -209,6 +185,7 @@ class GameObject < ApplicationRecord
   end
 
   def attack_target(object)
+    byebug
     battle_log = ["#{self.name} bravely attack #{object.name}"]
     self.weapon ? aw = self.weapon : aw = "powerful fist"
     self.armor ? aa = self.armor : aa = "strong bones"
@@ -266,11 +243,11 @@ class GameObject < ApplicationRecord
     Math.sqrt((target_x - start_x)**2+(target_y- start_y)**2)
   end
 
-  def print
-    div_open = "<div id= \"#{self.css_class}\" style = \"grid-column-start: #{self.x}; grid-row-start: #{self.y};\">".html_safe
-    div_close = "</div>".html_safe
-    "#{div_open}#{self.x}:#{self.y}#{div_close}"
-  end
+  #def print
+  #  div_open = "<div id= \"#{self.css_class}\" style = \"grid-column-start: #{self.x}; grid-row-start: #{self.y};\">".html_safe
+  #  div_close = "</div>".html_safe
+  #  "#{div_open}#{self.x}:#{self.y}#{div_close}"
+  #end
 
   # Player Commands
   def move_player(direction)
