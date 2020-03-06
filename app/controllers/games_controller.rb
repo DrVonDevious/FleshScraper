@@ -64,8 +64,7 @@ class GamesController < ApplicationController
   end
 
   def move_player
-    byebug
-    @game = Game.find_by(params[:id])
+    @game = Game.find(id: params[:id])
     event = @game.move_player(params[:direction])
     if event == "item"
       redirect_to "/games/#{@game.id}/item"
@@ -85,7 +84,7 @@ class GamesController < ApplicationController
   end
 
   def next_turn
-    @game = Game.find_by(params[:id])
+    @game = Game.find_by(id: params[:id])
     @game.make_a_turn
     redirect_to "/games/#{@game.id}/play"
   end
