@@ -185,7 +185,6 @@ class GameObject < ApplicationRecord
   end
 
   def attack_target(object)
-    byebug
     battle_log = ["#{self.name} bravely attack #{object.name}"]
     self.weapon ? aw = self.weapon : aw = "powerful fist"
     self.armor ? aa = self.armor : aa = "strong bones"
