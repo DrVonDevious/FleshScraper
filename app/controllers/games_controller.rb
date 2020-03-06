@@ -64,6 +64,7 @@ class GamesController < ApplicationController
   end
 
   def move_player
+    byebug
     @game = Game.find_by(params[:id])
     event = @game.move_player(params[:direction])
     if event == "item"

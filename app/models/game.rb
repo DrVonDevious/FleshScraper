@@ -10,7 +10,7 @@ class Game < ApplicationRecord
 
  
   def generate(heroname = "Arthur")
-    self.update(board_width: 100, board_heigth: 100, initial_zombies: 100, initial_npc: 10, turn_count: 0, current_score: 0)
+    self.update(board_width: 100, board_heigth: 100, initial_zombies: 101, initial_npc: 10, turn_count: 0, current_score: 0)
     # generate player
     player = GameObject.generate_player(self)
     player.update(name: heroname)
