@@ -16,31 +16,31 @@
       <div class="nav-commands">
         <%# window.location returns the current browser url using JS. %>
         <div class="nav-button">
-          <%= button_tag "", { class: "nav-nw", onclick: "window.location = '/move/northwest'" } %>
+          <%= button_tag "", { class: "nav north_west", onclick: "window.location = '/move/northwest'" } %>
         </div>
         <div class="nav-button">
-          <%= button_tag "", { class: "nav-n", onclick: "window.location = '/move/north'" } %>
+          <%= button_tag "", { class: "nav north", onclick: "window.location = '/move/north'" } %>
         </div>
         <div class="nav-button">
-          <%= button_tag "",  { class: "nav-ne", onclick: "window.location = '/move/northeast'" } %>
+          <%= button_tag "",  { class: "nav north_east", onclick: "window.location = '/move/northeast'" } %>
         </div>
         <div class="nav-button">
-          <%= button_tag "", { class: "nav-w", onclick: "window.location = '/move/west'" } %>
+          <%= button_tag "", { class: "nav west", onclick: "window.location = '/move/west'" } %>
         </div>
         <div class="nav-button">
-          <%= button_tag "Wait", { class: "nav-button", onclick: "window.location = '/nextturn'" } %>
+          <%= button_tag "Wait", { class: "wait_button", onclick: "window.location = '/nextturn'" } %>
         </div>
         <div class="nav-button">
-          <%= button_tag "", { class: "nav-e", onclick: "window.location = '/move/east'" } %>
+          <%= button_tag "", { class: "nav east", onclick: "window.location = '/move/east'" } %>
         </div>
         <div class="nav-button">
-          <%= button_tag "", { class: "nav-sw", onclick: "window.location = '/move/southwest'" } %>
+          <%= button_tag "", { class: "nav south_west", onclick: "window.location = '/move/southwest'" } %>
         </div>
         <div class="nav-button">
-          <%= button_tag "", { class: "nav-s", onclick: "window.location = '/move/south'" } %>
+          <%= button_tag "", { class: "nav south", onclick: "window.location = '/move/south'" } %>
         </div>
         <div class="nav-button">
-          <%= button_tag "", { class: "nav-se", onclick: "window.location = '/move/southeast'" } %>
+          <%= button_tag "", { class: "nav south_east", onclick: "window.location = '/move/southeast'" } %>
         </div>
       </div>
       <div class="action-commands">

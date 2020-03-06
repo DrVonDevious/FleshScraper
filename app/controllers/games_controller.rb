@@ -71,7 +71,7 @@ class GamesController < ApplicationController
   end
 
   def next_turn
-    @game = Game.find_by(id: params[:id])
+    @game = Game.find_by(params[:id])
     @game.make_a_turn
     redirect_to "/games/#{@game.id}/play"
   end

@@ -8,6 +8,7 @@
 }
 
 .game-map {
+  height: 84vh;
 }
 
 .game-menu-frame {
@@ -46,7 +47,7 @@
   float: right;
   padding-top: 40px;
   margin-left: 40px;
-  height: 78%;
+  height: 84vh;
   width: 20%;
   background-color: gray;
 }
@@ -74,14 +75,14 @@
 
 .action-commands {
   text-align: center;
-  padding-top: 80px;
+  padding-top: 20px;
   display: block;
 }
 
 .delete-command {
   text-align: center;
   padding-top: 40px;
-  padding-bottom: 40px;
+  padding-bottom: 10px;
   display: block;
 }
 
@@ -98,10 +99,24 @@
   outline: none;
 }
 
+.delete-button:active {
+  background-color: #545454;
+}
+
+.wait_button {
+  outline: none;
+  padding-top: 10px;
+  cursor: pointer;
+  font-size: 12pt;
+  font-weight: bold;
+  background-color: transparent;
+  border: none;
+}
+
 .nav-button {
   cursor: pointer;
   margin: 0;
-  height: 70px;
+  height: 40px;
   background-color: #707070;
   border: none;
   text-decoration: none;
@@ -117,7 +132,7 @@
   margin-top: 20px;
   background-color: #707070;
   border: none;
-  padding: 16px 16px;
+  padding: 8px 8px;
   width: 100px;
   text-decoration: none;
   font-family:'Roboto',sans-serif;
@@ -128,269 +143,46 @@
   background-color: #545454;
 }
 
-.nav-nw {
-  position: relative;
-  top: 34px;
-  left: 34px;
-  width: 45px;
-  height: 5px;
-  background-color: black;
-  display: block;
-  border: none;
-  transform: rotate(-135deg);
+.nav {
+  outline: none;
+  cursor: pointer;
+  border: solid black;
+  border-width: 0 6px 6px 0;
+  display: inline-block;
+  padding: 3px;
+  margin: 10px;
+  background-color: transparent;
 }
 
-.nav-nw:after {
-  content: '';
-  position: absolute;
-  width: 20px;
-  height: 5px;
-  top: -6px;
-  right: -4px;
-  background-color: black;
-  transform: rotate(45deg);
-}
-
-.nav-nw:before {
-  content: '';
-  position: absolute;
-  width: 20px;
-  height: 5px;
-  top: 6px;
-  right: -4px;
-  background-color: black;
-  transform: rotate(-45deg);
-}
-
-.nav-n {
-  position: relative;
-  top: 34px;
-  left: 34px;
-  width: 45px;
-  height: 5px;
-  background-color: black;
-  display: block;
-  border: none;
-  transform: rotate(-90deg);
-}
-
-.nav-n:after {
-  content: '';
-  position: absolute;
-  width: 20px;
-  height: 5px;
-  top: -6px;
-  right: -4px;
-  background-color: black;
-  transform: rotate(45deg);
-}
-
-.nav-n:before {
-  content: '';
-  position: absolute;
-  width: 20px;
-  height: 5px;
-  top: 6px;
-  right: -4px;
-  background-color: black;
-  transform: rotate(-45deg);
-}
-.nav-ne {
-  position: relative;
-  top: 34px;
-  left: 34px;
-  width: 45px;
-  height: 5px;
-  background-color: black;
-  display: block;
-  border: none;
-  transform: rotate(-45deg);
-}
-
-.nav-ne:after {
-  content: '';
-  position: absolute;
-  width: 20px;
-  height: 5px;
-  top: -6px;
-  right: -4px;
-  background-color: black;
-  transform: rotate(45deg);
-}
-
-.nav-ne:before {
-  content: '';
-  position: absolute;
-  width: 20px;
-  height: 5px;
-  top: 6px;
-  right: -4px;
-  background-color: black;
-  transform: rotate(-45deg);
-}
-.nav-w {
-  position: relative;
-  top: 34px;
-  left: 34px;
-  width: 45px;
-  height: 5px;
-  background-color: black;
-  display: block;
-  border: none;
+.north_west {
   transform: rotate(-180deg);
 }
 
-.nav-w:after {
-  content: '';
-  position: absolute;
-  width: 20px;
-  height: 5px;
-  top: -6px;
-  right: -4px;
-  background-color: black;
-  transform: rotate(45deg);
+.north {
+  transform: rotate(-135deg);
 }
 
-.nav-w:before {
-  content: '';
-  position: absolute;
-  width: 20px;
-  height: 5px;
-  top: 6px;
-  right: -4px;
-  background-color: black;
+.north_east {
+  transform: rotate(-90deg);
+}
+
+.west {
+  transform: rotate(-225deg);
+}
+
+.east {
   transform: rotate(-45deg);
 }
-.nav-e {
-  position: relative;
-  top: 34px;
-  left: 34px;
-  width: 45px;
-  height: 5px;
-  background-color: black;
-  display: block;
-  border: none;
+
+.south_west {
+  transform: rotate(-270deg);
+}
+
+.south {
+  transform: rotate(-315deg);
+}
+
+.south_east {
   transform: rotate(-0deg);
-}
-
-.nav-e:after {
-  content: '';
-  position: absolute;
-  width: 20px;
-  height: 5px;
-  top: -6px;
-  right: -4px;
-  background-color: black;
-  transform: rotate(45deg);
-}
-
-.nav-e:before {
-  content: '';
-  position: absolute;
-  width: 20px;
-  height: 5px;
-  top: 6px;
-  right: -4px;
-  background-color: black;
-  transform: rotate(-45deg);
-}
-.nav-sw {
-  position: relative;
-  top: 34px;
-  left: 34px;
-  width: 45px;
-  height: 5px;
-  background-color: black;
-  display: block;
-  border: none;
-  transform: rotate(135deg);
-}
-
-.nav-sw:after {
-  content: '';
-  position: absolute;
-  width: 20px;
-  height: 5px;
-  top: -6px;
-  right: -4px;
-  background-color: black;
-  transform: rotate(45deg);
-}
-
-.nav-sw:before {
-  content: '';
-  position: absolute;
-  width: 20px;
-  height: 5px;
-  top: 6px;
-  right: -4px;
-  background-color: black;
-  transform: rotate(-45deg);
-}
-.nav-s {
-  position: relative;
-  top: 34px;
-  left: 34px;
-  width: 45px;
-  height: 5px;
-  background-color: black;
-  display: block;
-  border: none;
-  transform: rotate(90deg);
-}
-
-.nav-s:after {
-  content: '';
-  position: absolute;
-  width: 20px;
-  height: 5px;
-  top: -6px;
-  right: -4px;
-  background-color: black;
-  transform: rotate(45deg);
-}
-
-.nav-s:before {
-  content: '';
-  position: absolute;
-  width: 20px;
-  height: 5px;
-  top: 6px;
-  right: -4px;
-  background-color: black;
-  transform: rotate(-45deg);
-}
-.nav-se {
-  position: relative;
-  top: 34px;
-  left: 34px;
-  width: 45px;
-  height: 5px;
-  background-color: black;
-  display: block;
-  border: none;
-  transform: rotate(45deg);
-}
-
-.nav-se:after {
-  content: '';
-  position: absolute;
-  width: 20px;
-  height: 5px;
-  top: -6px;
-  right: -4px;
-  background-color: black;
-  transform: rotate(45deg);
-}
-
-.nav-se:before {
-  content: '';
-  position: absolute;
-  width: 20px;
-  height: 5px;
-  top: 6px;
-  right: -4px;
-  background-color: black;
-  transform: rotate(-45deg);
 }
 

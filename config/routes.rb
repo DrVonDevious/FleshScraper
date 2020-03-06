@@ -13,7 +13,7 @@ Rails.application.routes.draw do
 
   # Static routes
   root 'static#home'
-  get 'static/about'
+  get '/about', to: 'static#about'
 
   # Game routes
   resources :games, only: [:new, :create, :index]
