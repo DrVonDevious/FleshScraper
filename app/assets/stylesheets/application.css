@@ -162,6 +162,12 @@
   padding-right: 20px;
 }
 
+.nav-scores {
+  float: right;
+  padding-top: 10px;
+  padding-right: 20px;
+}
+
 .nav-link-to {
   font-size: 40px;
 }

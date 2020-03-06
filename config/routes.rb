@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   # Static routes
   root 'static#home'
   get '/about', to: 'static#about'
+  get '/leaderboard', to: 'static#leaderboard', as: 'score'
 
   # Game routes
   resources :games, only: [:new, :create, :index]

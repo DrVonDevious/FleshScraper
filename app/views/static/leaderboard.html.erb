@@ -1,0 +1,12 @@
+<h1>Leaderboard</h1>
+
+<h3>- Scores -</h3>
+<ol>
+  <% @games.order(:current_score).each do |game| %>
+    <li>
+      <%= User.find_by(id: game.user_id).username %>: 
+      Character - <%= game.game_objects.find_by(game_type: "player").name %>.
+      Score - <%= game.current_score %>.
+    </li>
+  <% end %>
+</ol>

@@ -17,6 +17,9 @@
       <div class="nav-home">
         <a href='/'>FleshScraper</a>
       </div>
+      <div class="nav-scores">
+        <%= link_to 'Leaderboard', score_path %>
+      </div>
       <% if logged_in? %>
         <div class="nav-logout">
           <%= link_to 'Logout', logout_path, method: 'delete' %>
