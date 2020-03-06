@@ -3,7 +3,7 @@ class GamesController < ApplicationController
 
   skip_before_action :verify_authenticity_token, only: [:create]
 
-  helper_method :player_stats
+  helper_method :player_stats, :player_score
 
   def random
     Cell.delete_all
@@ -76,12 +76,12 @@ class GamesController < ApplicationController
     redirect_to "/games/#{@game.id}/play"
   end
 
+  # Helper Methods
+
   def player_stats
     @game = Game.find_by(id: params[:id])
     @game.player_stats
   end
-
-  private
 
   def game_params
     params.require(:game).permit(:board_width, :board_heigth,

@@ -10,7 +10,7 @@ class Game < ApplicationRecord
 
  
   def generate(heroname = "Arthur")
-    self.update(board_width: 100, board_heigth: 100, initial_zombies: 100, initial_npc: 10)
+    self.update(board_width: 100, board_heigth: 100, initial_zombies: 100, initial_npc: 10, turn_count: 0, current_score: 0)
     # generate player
     player = GameObject.generate_player(self)
     player.update(name: heroname)
@@ -46,17 +46,19 @@ class Game < ApplicationRecord
   end
 
   def move_player(direction)
-    player = self.game_objects.find { |obj| obj.game_type == "player" }
+    player = self.game_objects.find_by(game_type: "player")
     player.move_player(direction)
   end
 
   def player_stats
-    player = self.game_objects.find { |obj| obj.game_type == "player" }
+    player = self.game_objects.find_by(game_type: "player")
     stats = { hp: player.hp,
               attack: player.attack,
               defence: player.defence,
               speed: player.speed,
-              name: player.name }
+              name: player.name,
+              score: self.current_score,
+              turns: self.turn_count }
   end
 
   def mobs
@@ -64,8 +66,15 @@ class Game < ApplicationRecord
   end
 
   def make_a_turn
+    self.update(turn_count: self.turn_count + 1)
+    self.update_score(1)
     self.mobs.each { |mob|
       mob.make_a_move
     }
   end
+
+  def update_score(amount)
+    self.update(current_score: self.current_score + amount)
+  end
+
 end
