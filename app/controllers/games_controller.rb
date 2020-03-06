@@ -83,6 +83,15 @@ class GamesController < ApplicationController
     @log = @player.attack_target(@opponent)
   end
 
+  def item
+    @game = Game.find(params[:id])
+    @player = @game.game_objects.find_by(game_type: "player")
+    @item = @game.game_objects.where(game_type: "item").find_by(x: @player.x, y: @player.y)
+    @item.destroy
+    @reward = GameObject.random_item
+    @phrase = @player.use_item(@reward).html_safe
+  end
+
   def next_turn
     @game = Game.find(params[:id])
     @game.make_a_turn
