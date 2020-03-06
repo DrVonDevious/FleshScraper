@@ -197,8 +197,7 @@
 }
 
 #battlestats {
-  background-color: rgba(0, 0, 0, 0.5);
-  opacity: 0.3;
+  background-color: rgba(0, 0, 0, 0.4);
   color: white;
   display: flex;
   flex-direction: column;
@@ -216,9 +215,9 @@
 }
 
 #ok_button{
-  position: absolute;
-  bottom: 52vw; 
-  right: 28vw;
+  position: sticky;
+  bottom: 52vw;
+  margin-left: 40px;
 }
 
 #fight-header {

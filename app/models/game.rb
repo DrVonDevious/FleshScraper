@@ -1,14 +1,8 @@
 class Game < ApplicationRecord
-  # belongs_to :user
-  has_many :cells
-  has_many :zombies, through: :cells
-  has_many :players, through: :cells
-  has_many :non_player_charachters, through: :cells
-  has_many :items, through: :cells
-  has_many :obstacles, through: :cells
+
+  belongs_to :user
   has_many :game_objects
 
- 
   def generate(heroname = "Arthur")
     self.update(board_width: 100, board_heigth: 100, initial_zombies: 100, initial_npc: 10, turn_count: 0, current_score: 0)
     # generate player
@@ -30,7 +24,7 @@ class Game < ApplicationRecord
     self.initial_npc.times do 
       object_array << GameObject.create_random(self, "npc")
     end
- 
+
     GameObject.insert_all(object_array)
   end
 

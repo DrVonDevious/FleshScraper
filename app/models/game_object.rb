@@ -1,8 +1,6 @@
 class GameObject < ApplicationRecord
   belongs_to :game
 
-
-
   # t.boolean :is_alive
   # t.string :css_class
   # t.integer :x
@@ -257,12 +255,12 @@ class GameObject < ApplicationRecord
     end
     event   
   end
+
   def directions
     {"northeast": [1, -1], "north": [0, -1], "northwest": [-1, -1], "east": [1, 0], "west": [-1, 0], "southeast": [1, 1], "south": [0, 1], "southwest": [-1, 1]}
   end
+
   private
-
-
 
   def collision?(coords)
     occupier = self.game.game_objects.find_by(x: self.x+coords[0], y: self.y+coords[1])
